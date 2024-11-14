@@ -1,0 +1,23 @@
+logging:
+  level:
+    com:
+      hyunjoo: debug
+    org:
+      hibernate:
+        type: trace #warn
+      springframework:
+        web:
+          servlet:
+            PageNotFound: error
+  file:
+    path: ./logs/app-prod
+  logback:
+    rollingpolicy:
+      max-history: 60
+      total-size-cap: 3GB
+  pattern:
+#    console: "%clr([%d{yyyy-MM-dd HH:mm:ss.SSS}]){yellow} %clr([%-5level]){green} %clr([%logger.%method:line%line]){cyan} - %msg%n"
+    file: "[%d{HH:mm:ss.SSS}][%thread][%-5level][%logger.%method:line%line] - %msg%n"
+  charset:
+    console: UTF-8
+    file: UTF-8

@@ -1,0 +1,16 @@
+## GROUP
+---
+spring:
+  profiles:
+    group:
+      local: local, db, oauth
+---
+spring:
+  profiles:
+    group:
+      prod: prod
+## common (localhost, development, production)
+---
+spring:
+  profiles:
+    include: common, actuator, log

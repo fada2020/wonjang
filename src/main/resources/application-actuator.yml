@@ -1,0 +1,16 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,info,metrics,env"
+# Health: /actuator/health - 애플리케이션의 건강 상태를 확인할 수 있습니다.
+# Info: /actuator/info - 애플리케이션의 기본 정보를 확인할 수 있습니다.
+# Metrics: /actuator/metrics - 애플리케이션의 여러 가지 지표를 확인할 수 있습니다.
+# Env: /actuator/env - 애플리케이션의 환경 변수와 설정 정보를 확인할 수 있습니다.
+# Mappings: `/actuator/mappings - 애플리케이션의 모든 컨트롤러 매핑 정보를 확인할 수 있습니다.
+# Beans: /actuator/beans - 애플리케이션의 빈 정보를 조회할 수 있습니다.
+# Loggers: /actuator/loggers - 애플리케이션의 로거 설정을 확인하고 변경할 수 있습니다.
+# ConfigProps: /actuator/configprops - 애플리케이션의 구성 속성을 확인할 수 있습니다.
+# Heapdump: /actuator/heapdump - 애플리케이션의 힙 덤프를 다운로드할 수 있습니다.
+# Threaddump: /actuator/threaddump - 애플리케이션의 스레드 덤프 정보를 확인할 수 있습니다.
+# https://bigdown.tistory.com/548

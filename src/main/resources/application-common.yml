@@ -1,0 +1,46 @@
+spring:
+  output:
+    ansi:
+      enabled: always
+  servlet:
+    multipart:
+      max-file-size: 2GB
+      max-request-size: 2GB
+
+  messages:
+    encoding: UTF-8
+    basename: i18n/messages,i18n/errors
+
+  session:
+    timeout: 300m
+  thymeleaf:
+    prefix : classpath:templates/
+    suffix : .html
+    cache : false
+
+  mvc:
+    static-path-pattern: /**
+#    resources:
+#      add-mappings: true
+#      static-locations: classpath:/static/
+    hiddenmethod:
+      filter:
+        enabled: true
+server:
+  port: 8030
+  servlet:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+
+file-path:
+  url-path: '/storage/'
+jwt:
+  issuer: yongippo@email.com
+  access:
+    time: 3600000
+    key: fXeC4f9xp5SHddpzTIaLd9b9HlhZi8qdK/Y8YL4tJZY= #suhyunjoo-0731-ppoyongi-0919-leehyeokju-0828-seoul-guro
+  refresh:
+    time: 3600000
+    key: ur5Rtszy7fS2LtsjjU9mKq8xK1wae+dhd/HabijEtyo= #aoto-gotanda-kameari-chitosefunabashi-hatanodai-takatsu-chancheon-hwainbil-hubsu
