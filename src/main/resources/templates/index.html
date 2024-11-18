@@ -4,80 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>교육 페이지</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    body {
-      font-family: 'Noto Sans KR', sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      background-color: #f7f7f7;
-    }
-    header {
-      background-color: #0056b3;
-      color: #ffffff;
-      padding: 15px;
-      text-align: center;
-      font-size: 24px;
-    }
-    nav {
-      background-color: #004494;
-      display: flex;
-      justify-content: space-around;
-      padding: 10px 0;
-    }
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 5px;
-      transition: background 0.3s;
-    }
-    nav a:hover {
-      background-color: #003366;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 20px;
-    }
-    .banner {
-      width: 100%;
-      max-width: 1200px;
-      margin-bottom: 20px;
-    }
-    .banner img {
-      width: 100%;
-      border-radius: 10px;
-    }
-    .section {
-      width: 100%;
-      max-width: 1200px;
-      background-color: #ffffff;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      padding: 20px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-    .footer {
-      background-color: #003366;
-      color: #ffffff;
-      text-align: center;
-      padding: 15px;
-      margin-top: 20px;
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-<header>교육 정보 포털</header>
-<nav>
-  <a href="#">홈</a>
-  <a href="#">강의</a>
-  <a href="#">자료실</a>
-  <a href="#">공지사항</a>
-  <a href="#">문의하기</a>
-</nav>
+<th:block th:replace="~{layout/header::header('원장의 똥꼬쇼')}" th:remove="tag"></th:block>
 <div class="container">
   <div class="banner">
     <img src="https://via.placeholder.com/1200x400" alt="배너 이미지">
