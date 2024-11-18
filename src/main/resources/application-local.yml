@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    password: guswn0731
+    url: jdbc:mariadb://localhost:3306/db_private?serverTimezone=Asia/Seoul&useSSL=false&characterEncoding=utf8
+    username: fada2020
+  output:
+    ansi:
+      enabled: always
+  jpa:
+    generate-ddl: true
+    database: MYSQL
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MariaDBDialect
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        ddl-auto: update
+        show_sql: true
+        format_sql: true
+file-path:
+  upload-path: 'D:\storage\'

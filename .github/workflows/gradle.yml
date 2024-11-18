@@ -82,4 +82,4 @@ jobs:
             ---
             🚀 *배포 일자:* ${{ env.NOW }}
             🌐 *서버:* 아직 없음
-            🎉 *GIT 주소:* [GIT 바로가기](https://github.com/fada2020/hyunjoo)
+            🎉 *GIT 주소:* [GIT 바로가기](https://github.com/fada2020/wonjang)
