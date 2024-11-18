@@ -2,7 +2,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     container_name: cmd_certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email yongippo@gmail.com --agree-tos --no-eff-email -d xn--o55b91v.xn--2i0b10rqve.xn--3e0b707e
+    command: certonly --webroot --webroot-path=/var/www/certbot --email leehyeokju1@gmail.com --agree-tos --no-eff-email -d xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e
     volumes:
       - ./certbot/conf:/etc/letsencrypt:rw
       - ./certbot/www:/var/www/certbot:rw
