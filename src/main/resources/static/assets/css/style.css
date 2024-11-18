@@ -59,3 +59,28 @@ nav a:hover {
     padding: 15px;
     margin-top: 20px;
 }
+.lecture-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+}
+.lecture-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.pagination {
+    margin: 20px 0;
+}
+.pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
