@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+  <section id="inSectionMain" style="background-color: #1B487E;position: relative;z-index: 1;">
+    <div id="bad">
+      <div class="innerBx innerWrap " style="padding:62px;">
+        <div class="container">
+          <div class="page-container page-container-responsive">
+            <div class="row space-top-8 space-8">
+              <div class="row text-center">
+                <div class="col-md-6" id="imgzz">
+                  <img src="/assets/img/common/error.jpg"  alt="Girl has dropped her ice cream." style="position:relative; z-index:-1;">
+                </div>
+
+                <div class="col-md-6" style="color: white; text-align:left;">
+                  <span class="errorPage">
+                      <h1><span class="errorHead" style="color:red">Bad Request!</span><br/></h1>
+                      <h3><p>The request could not be understood by the server due to malformed syntax.</p></h3>
+                      <p th:text="${'path: ' + path}"></p>
+                      <p th:text="${'status: ' + status}"></p>
+                      <p th:text="${'timestamp: ' + timestamp}"></p>
+                      <p th:text="${'error: ' + error}"></p>
+                      <!--<p th:text="${'errors: ' + errors}"></p>-->
+                      <p th:text="${'exception: ' + exception}"></p>
+                      <!--<p th:text="${'message: ' + message}"></p>-->
+                      <p th:text="${'trace: ' + trace}"></p>
+                  </span>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</html>
+

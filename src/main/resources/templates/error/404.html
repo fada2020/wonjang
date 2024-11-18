@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <section id="inSectionMain" style="background: linear-gradient(#16002E, #1B487E);" >
+    <div class="innerBx innerWrap " style="padding:62px;">
+      <div class="container">
+        <div class="page-container page-container-responsive">
+          <div class="row space-top-8 space-8">
+            <div class="row text-center">
+
+              <div class="col-md-6">
+                <img src="/images/common/404.png"  alt="Girl has dropped her ice cream.">
+              </div>
+
+              <div class="col-md-6" style="color: white; text-align:left;">
+                <span class="errorPage">
+                    <h1><span class="errorHead" style="color:red">Not Found!</span><br/></h1>
+                    <h3><p>The server has not found anything matching the Request-URI.</p></h3>
+                    <p th:text="${'path: ' + path}"></p>
+                    <p th:text="${'status: ' + status}"></p>
+                    <p th:text="${'timestamp: ' + timestamp}"></p>
+                    <p th:text="${'error: ' + error}"></p>
+                    <!--<p th:text="${'errors: ' + errors}"></p>-->
+                    <p th:text="${'exception: ' + exception}"></p>
+                    <!--<p th:text="${'message: ' + message}"></p>-->
+                    <p th:text="${'trace: ' + trace}"></p>
+                </span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</html>
+

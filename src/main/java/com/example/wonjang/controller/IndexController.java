@@ -20,6 +20,10 @@ public class IndexController {
     public String inquiryIndex(){
         return "inquiry/index";
     }
+    @GetMapping("/data")
+    public String dataIndex(){
+        return "data/index";
+    }
     @GetMapping("/announce")
     public String announceIndex(){
         return "announce/index";
