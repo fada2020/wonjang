@@ -69,7 +69,7 @@ nav a:hover {
     text-align: center;
 }
 .lecture-card img {
-    max-width: 100%;
+    /*max-width: 100%;*/
     height: auto;
     border-radius: 5px;
     margin-bottom: 10px;
@@ -83,4 +83,9 @@ nav a:hover {
     padding: 5px 10px;
     border: 1px solid #ddd;
     border-radius: 3px;
+}
+.lecture-image {
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
 }

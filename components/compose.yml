@@ -33,6 +33,8 @@ services:
       - TZ=Asia/Seoul
     entrypoint:
       - "java"
+      - "-Xms256m"            # 초기 힙 메모리 설정
+      - "-Xmx512m"            # 최대 힙 메모리 설정
       - "-jar"
       - "-Dspring.profiles.active=prod"
       - "/app.jar"
