@@ -1,8 +1,12 @@
 package com.example.wonjang.model;
 
 
+import com.example.wonjang.dto.SignUpDto;
+import com.example.wonjang.dto.UpdateMemberDto;
 import com.example.wonjang.dto.UserDto;
+import io.micrometer.common.util.StringUtils;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import lombok.*;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -104,5 +108,30 @@ public class Member extends BaseTimeEntity implements UserDetails {  // UserDeta
 
     public void updateActive(Boolean isActive) {
         this.isEnabled = isActive ? "Y" : "N";
+    }
+
+    public SignUpDto toSignUpDto() {
+        return SignUpDto.builder()
+                .name(this.name)
+                .email(this.email)
+                .picture(this.picture)
+                .grade(this.grade)
+                .degree(this.degree)
+                .build();
+    }
+
+    public void updateMember(@Valid UpdateMemberDto updateMemberDto) {
+        this.name = updateValue(this.name, updateMemberDto.getName());
+        this.degree = updateValue(this.degree, updateMemberDto.getDegree());
+        this.grade = updateValue(this.grade, updateMemberDto.getGrade());
+        this.picture = updateValue(this.picture, updateMemberDto.getPicture());
+        this.password = updateValue(this.password, updateMemberDto.getPassword());
+    }
+
+    private String updateValue(String currentValue, String newValue) {
+        if (StringUtils.isNotEmpty(newValue) && !Objects.equals(currentValue, newValue)) {
+            return newValue;
+        }
+        return currentValue;
     }
 }

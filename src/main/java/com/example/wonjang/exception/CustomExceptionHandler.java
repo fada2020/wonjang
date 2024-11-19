@@ -6,15 +6,19 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.io.IOException;
 
 @Slf4j
 @ControllerAdvice
 public class CustomExceptionHandler {
-    @ExceptionHandler(CustomException.class)
-    protected ResponseEntity<?> handleGlobalException(CustomException e, HttpServletRequest req, HttpServletResponse res) {
-        ErrorCode errorCode = e.getErrorCode();
-        ErrorResponse response = ErrorResponse.of(e).getBody();
-        log.error("CustomException={}",e.getMessage());
-        return new ResponseEntity<>(response, errorCode.getHttpStatus());
+
+    @ExceptionHandler(Exception.class)
+    public Object nullex(Exception e) {
+        System.err.println(e.getClass());
+        System.err.println(e.getMessage());
+        ModelAndView mv = new ModelAndView("index");
+        return mv;
     }
 }

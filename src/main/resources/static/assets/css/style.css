@@ -5,6 +5,7 @@ body {
     box-sizing: border-box;
     background-color: #f7f7f7;
 }
+
 header {
     background-color: #0056b3;
     color: #ffffff;
@@ -12,39 +13,42 @@ header {
     text-align: center;
     font-size: 24px;
     display: flex;
-    justify-content: space-between; /* 양쪽 끝에 배치 */
-    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header-title {
-    flex: 1; /* 타이틀 영역은 왼쪽에 고정 */
+    flex: 1;
     text-align: center;
 }
 
 .header-buttons {
     display: flex;
-    gap: 10px; /* 버튼 간의 간격 */
+    gap: 10px;
 }
 
-.header-buttons > button {
+.header-buttons > a {
     background-color: #ffffff;
     color: #0056b3;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    text-decoration: none;
 }
 
-.header-buttons > button:hover {
+.header-buttons > a:hover {
     background-color: #004494;
     color: #ffffff;
 }
+
 nav {
     background-color: #004494;
     display: flex;
     justify-content: space-around;
     padding: 10px 0;
 }
+
 nav a {
     color: #ffffff;
     text-decoration: none;
@@ -52,24 +56,29 @@ nav a {
     border-radius: 5px;
     transition: background 0.3s;
 }
+
 nav a:hover {
     background-color: #003366;
 }
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 20px;
 }
+
 .banner {
     width: 100%;
     max-width: 1200px;
     margin-bottom: 20px;
 }
+
 .banner img {
     width: 100%;
     border-radius: 10px;
 }
+
 .section {
     width: 100%;
     max-width: 1200px;
@@ -79,6 +88,7 @@ nav a:hover {
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
 footer {
     background-color: #003366;
     color: #ffffff;
@@ -86,6 +96,7 @@ footer {
     padding: 15px;
     margin-top: 20px;
 }
+
 .lecture-card {
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -95,15 +106,17 @@ footer {
     width: 30%;
     text-align: center;
 }
+
 .lecture-card img {
-    /*max-width: 100%;*/
     height: auto;
     border-radius: 5px;
     margin-bottom: 10px;
 }
+
 .pagination {
     margin: 20px 0;
 }
+
 .pagination a {
     margin: 0 5px;
     text-decoration: none;
@@ -111,11 +124,13 @@ footer {
     border: 1px solid #ddd;
     border-radius: 3px;
 }
+
 .lecture-image {
     width: 100%;
     max-width: 400px;
     margin-bottom: 20px;
 }
+
 /* 로그인 폼 배치 */
 .login-container {
     display: flex;
@@ -161,6 +176,7 @@ footer {
     border-radius: 5px;
     box-sizing: border-box;
 }
+
 .input-group select {
     appearance: none;
     -webkit-appearance: none;
@@ -170,7 +186,7 @@ footer {
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 15px;
-    padding-right: 30px; /* 아이콘과 내용의 간격을 추가 */
+    padding-right: 30px;
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -178,6 +194,7 @@ footer {
     border-radius: 5px;
     box-sizing: border-box;
 }
+
 .input-group select option {
     padding: 10px;
     background-color: #ffffff;
@@ -202,9 +219,11 @@ footer {
     cursor: pointer;
     transition: background-color 0.3s;
 }
+
 .submit-button:hover {
     background-color: #003d7a;
 }
+
 /* 회원가입 링크 */
 .signup-link {
     margin-top: 20px;
@@ -217,4 +236,83 @@ footer {
 
 .signup-link a:hover {
     text-decoration: underline;
+}
+
+/* 햄버거 메뉴 스타일 */
+.hamburger {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+.close-button {
+    display: none;
+}
+#loginButton, #myPageButton, #logoutButton{
+    display: none;
+}
+
+/* 작은 화면에서 반응형 스타일 */
+@media (max-width: 768px) {
+    header {
+        flex-wrap: wrap;
+    }
+    #loginButton, #myPageButton, #logoutButton{
+        display: block;
+    }
+    .header-buttons {
+        display: none; /* 큰 화면에서 버튼들을 숨김 */
+    }
+
+    .hamburger {
+        display: block; /* 작은 화면에서만 햄버거 메뉴 표시 */
+    }
+
+    nav {
+        display: none; /* 기본적으로 숨김 */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: #004494;
+        padding-top: 60px;
+        z-index: 1000;
+    }
+
+    nav.active {
+        display: flex; /* 햄버거 버튼 클릭 시 메뉴 열림 */
+    }
+
+    nav a {
+        padding: 15px;
+        text-align: left;
+    }
+
+    .header-buttons a {
+        display: none; /* 작은 화면에서 버튼들을 내비게이션 메뉴 안으로 이동 */
+    }
+
+    .hamburger.active + nav {
+        display: flex; /* 햄버거 버튼 클릭 시 메뉴 열림 */
+    }
+    /* 닫기 버튼 스타일 */
+    .close-button {
+        font-size: 24px;
+        color: #ffffff;
+        background: none;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        display: block;
+    }
+
+    .close-button:hover {
+        color: #ff0000;
+    }
+
 }

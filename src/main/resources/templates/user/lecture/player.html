@@ -7,51 +7,185 @@
     <title>강의</title>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}">
     <style>
-        /* 공통 스타일 */
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f9fa; /* 밝은 배경 */
+        /* 비디오 플레이어 컨테이너 */
+        .custom-video-player {
+            width: 90%;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #000;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: relative;
         }
 
-        .lecture-player {
+        /* 비디오 태그 */
+        .custom-video-player video {
+            display: block;
+            width: 100%; /* 부모 크기에 맞춤 */
+            height: auto;
+            cursor: pointer;
+        }
+
+        /* 컨트롤바 */
+        .controls {
             display: flex;
-            justify-content: center;
             align-items: center;
-            height: calc(100vh - 120px); /* 헤더와 푸터 공간 제외 */
-            background-color: #e9ecef; /* 비디오 배경색 */
-            padding: 20px;
-        }
-
-        .lecture-player video {
-            max-width: 100%; /* 화면에 맞게 */
-            max-height: 100%; /* 높이 제한 */
-            border-radius: 8px; /* 모서리 둥글게 */
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25); /* 그림자 효과 */
-            background-color: black; /* 비디오 재생 전 검은색 배경 */
-        }
-
-        /* 비디오 컨트롤 스타일 (HTML 기본 비디오 스타일을 덮어씀) */
-        video::-webkit-media-controls {
-            border-radius: 8px;
-        }
-
-        /* 헤더와 푸터 보정 */
-        .header,
-        .footer {
+            justify-content: space-between;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
             width: 100%;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        /* 재생/일시정지 버튼 */
+        .play-btn {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* 타임라인 */
+        .timeline {
+            flex: 1;
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .progress {
+            width: 100%;
+            height: 4px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: #1abc9c;
+            border-radius: 5px;
+        }
+
+        /* 볼륨 컨트롤 */
+        .volume {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-right: 10px;
+        }
+
+        .volume input {
+            width: 80px; /* 슬라이더 크기 */
+            cursor: pointer;
+        }
+
+        /* 반응형 조정 */
+        @media (max-width: 768px) {
+            .controls {
+                font-size: 12px; /* 모바일에서 글자 크기 축소 */
+                padding: 8px;
+            }
+            .volume input {
+                width: 60px; /* 슬라이더 크기 축소 */
+            }
         }
     </style>
 </head>
 <body>
 <th:block th:replace="~{user/layout/header::header('원장의 똥꼬쇼')}" th:remove="tag"></th:block>
-<div class="lecture-player">
-    <video controls>
+
+<div class="custom-video-player">
+    <video id="videoPlayer">
         <source th:src="@{${lecture.videoUrl}}" type="video/mp4">
         <p>현재 브라우저는 비디오 태그를 지원하지 않습니다.</p>
     </video>
+    <div class="controls">
+        <!-- 5초 뒤로 -->
+        <button class="play-btn" id="rewindBtn">⏪ </button>
+
+        <!-- 재생/일시정지 버튼 -->
+        <button class="play-btn" id="playPauseBtn">&#9654;</button>
+
+        <!-- 5초 앞으로 -->
+        <button class="play-btn" id="forwardBtn"> ⏩</button>
+
+        <!-- 타임라인 -->
+        <div class="timeline">
+            <div class="progress">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+        </div>
+
+        <!-- 볼륨 컨트롤 -->
+        <div class="volume">
+            <label for="volumeControl">🔊</label>
+            <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+        </div>
+    </div>
 </div>
 <th:block th:replace="~{user/layout/footer::footer}" th:remove="tag"></th:block>
+<script>
+    // 요소 선택
+    const video = document.getElementById('videoPlayer');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const rewindBtn = document.getElementById('rewindBtn');
+    const forwardBtn = document.getElementById('forwardBtn');
+    const progressBar = document.getElementById('progressBar');
+    const volumeControl = document.getElementById('volumeControl');
+
+    // 재생/일시정지 토글
+    const togglePlayPause = () => {
+        if (video.paused || video.ended) {
+            video.play();
+            playPauseBtn.innerHTML = '⏸'; // 일시정지 아이콘
+        } else {
+            video.pause();
+            playPauseBtn.innerHTML = '▶'; // 재생 아이콘
+        }
+    };
+
+    // 클릭 시 비디오 재생/일시정지
+    video.addEventListener('click', togglePlayPause);
+
+    // 버튼 클릭 시 재생/일시정지
+    playPauseBtn.addEventListener('click', togglePlayPause);
+
+    // 5초 뒤로 이동
+    rewindBtn.addEventListener('click', () => {
+        video.currentTime = Math.max(0, video.currentTime - 5);
+    });
+
+    // 5초 앞으로 이동
+    forwardBtn.addEventListener('click', () => {
+        video.currentTime = Math.min(video.duration, video.currentTime + 5);
+    });
+
+    // 타임라인 업데이트
+    video.addEventListener('timeupdate', () => {
+        const progressPercent = (video.currentTime / video.duration) * 100;
+        progressBar.style.width = `${progressPercent}%`;
+    });
+
+    // 타임라인 클릭으로 이동
+    document.querySelector('.progress').addEventListener('click', (e) => {
+        const rect = e.target.getBoundingClientRect();
+        const clickPosition = e.clientX - rect.left;
+        const clickPercent = clickPosition / rect.width;
+        video.currentTime = video.duration * clickPercent;
+    });
+
+    // 볼륨 컨트롤
+    volumeControl.addEventListener('input', (e) => {
+        video.volume = e.target.value;
+    });
+</script>
+
+
 </body>
 </html>

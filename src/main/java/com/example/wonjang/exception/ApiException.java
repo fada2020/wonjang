@@ -8,11 +8,5 @@ import org.springframework.web.servlet.ModelAndView;
 @Slf4j
 @RestControllerAdvice
 public class ApiException {
-    @ExceptionHandler(Exception.class)
-    public Object nullex(Exception e) {
-        System.err.println(e.getClass());
-        System.err.println(e.getMessage());
-        ModelAndView mv = new ModelAndView("index");
-        return mv;
-    }
+
 }
