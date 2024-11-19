@@ -44,7 +44,7 @@ public class LectureController {
             , @SessionAttribute(value = "user", required = false) UserDto user
             , Model model
     ){
-        if (admin == null || user == null) {
+        if (admin == null && user == null) {
             return "redirect:/login";
         }
         Optional<Lecture>optionalLecture = lectureService.findById(id);
