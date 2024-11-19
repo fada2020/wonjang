@@ -12,7 +12,7 @@
 <h1>Lecture List</h1>
 <div>
     <div th:each="lecture : ${lectures}" class="lecture-card" >
-        <a th:href="@{/templates/user/lecture/{id}(id=${lecture.id})}">
+        <a th:href="@{/lecture/{id}(id=${lecture.id})}">
             <img class="lecture-image" th:src="${lecture.imgUrl}" alt="Lecture Image"/>
             <h3 th:text="${lecture.title}">Lecture Title</h3>
             <p th:text="${lecture.description}">Lecture Description</p>
