@@ -31,7 +31,7 @@ public class LectureController {
             , @PageableDefault(size = 10) @SortDefault.SortDefaults(@SortDefault(sort="id", direction = Sort.Direction.DESC)) Pageable pageable){
         Page<Lecture>lectures = lectureService.findAll(pageable);
         model.addAttribute("lectures", lectures);
-        return "lecture/index";
+        return "user/lecture/index";
     }
     @GetMapping("/{id}")
     public String lectureIndex(
@@ -41,7 +41,7 @@ public class LectureController {
         Optional<Lecture>optionalLecture = lectureService.findById(id);
         if(optionalLecture.isPresent()) {
             model.addAttribute("lecture", optionalLecture.get());
-            return "lecture/player";
+            return "user/lecture/player";
         } else {
             return "redirect:/lecture";
         }

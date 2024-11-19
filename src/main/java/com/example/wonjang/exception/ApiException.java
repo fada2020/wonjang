@@ -15,11 +15,4 @@ public class ApiException {
         ModelAndView mv = new ModelAndView("index");
         return mv;
     }
-
-    @ExceptionHandler(ClassNotFoundException.class)
-    public Object nullex2(ClassNotFoundException e) {
-        System.err.println(e.getClass());
-        System.err.println(e.getMessage());
-        return "my2222Service";
-    }
 }

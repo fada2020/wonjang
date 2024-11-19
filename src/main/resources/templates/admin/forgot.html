@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 찾기</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .forgot-container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .forgot-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .forgot-header h1 {
+            font-size: 24px;
+            color: #2c3e50;
+        }
+
+        .forgot-header p {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #34495e;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: #1abc9c;
+            outline: none;
+        }
+
+        .forgot-button {
+            width: 100%;
+            background-color: #1abc9c;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .forgot-button:hover {
+            background-color: #16a085;
+        }
+
+        .forgot-footer {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .forgot-footer a {
+            color: #1abc9c;
+            text-decoration: none;
+        }
+
+        .forgot-footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="forgot-container">
+    <div class="forgot-header">
+        <h1>비밀번호 찾기</h1>
+        <p>가입 시 사용한 이메일 주소를 입력하세요</p>
+    </div>
+    <form action="/admin/forgot" method="POST">
+        <div class="form-group">
+            <label for="email">이메일</label>
+            <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+        </div>
+        <button type="submit" class="forgot-button">비밀번호 재설정 링크 전송</button>
+    </form>
+    <div class="forgot-footer">
+        <p>로그인 화면으로 돌아가기? <a href="/admin">로그인</a></p>
+    </div>
+</div>
+</body>
+</html>

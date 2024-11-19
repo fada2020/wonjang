@@ -1,5 +1,6 @@
 package com.example.wonjang.dto;
 
+import com.example.wonjang.model.Role;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -7,12 +8,12 @@ import lombok.Getter;
 public class UserDto {
     private String email;
     private String name;
-    private String token;
+    private Role role;
     @Builder
-    public UserDto(String email, String name, String token) {
+    public UserDto(String email, String name, Role role) {
         this.email = email;
         this.name = name;
-        this.token = token;
+        this.role = role;
     }
 
     public UserDto() {

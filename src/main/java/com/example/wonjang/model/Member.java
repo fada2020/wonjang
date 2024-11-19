@@ -28,14 +28,16 @@ public class Member extends BaseTimeEntity implements UserDetails {  // UserDeta
     @Column(name = "email", nullable = false, unique = true)
     private String email;
     private String name;
+    private String degree;
+    private String grade;
     private String password;
     private String picture;
     private String provider;
 
-
+    @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Role role;
+    private Role role = Role.USER;
     @Builder.Default
     @Column(name = "isEnabled", columnDefinition = "VARCHAR(1) default 'N'")
     private String isEnabled = "N";
@@ -86,8 +88,8 @@ public class Member extends BaseTimeEntity implements UserDetails {  // UserDeta
         return Objects.equals(this.isEnabled, "Y");  // true -> 사용 O
     }
 
-    public UserDto toDto(String token) {
-        return UserDto.builder().name(this.name).email(this.email).token(token).build();
+    public UserDto toDto() {
+        return UserDto.builder().name(this.name).email(this.email).role(this.role).build();
     }
 
     public Member update(String name, String picture) {

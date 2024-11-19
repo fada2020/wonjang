@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<th:block th:replace="~{user/layout/header::header('원장의 똥꼬쇼')}" th:remove="tag"></th:block>
+
+<div class="signup-container">
+  <div class="signup-form">
+    <h2>회원가입</h2>
+    <form  method="POST" th:object="${signUpDto}" onsubmit="return checkValues(this);">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+      <div class="input-group">
+        <label th:for="email">이메일</label>
+        <input type="email" th:field="*{email}" required>
+      </div>
+      <div class="input-group">
+        <label th:for="password">비밀번호</label>
+        <input type="password" th:field="*{password}"  required>
+      </div>
+      <div class="input-group">
+        <label for="confirmPassword">비밀번호 확인</label>
+        <input type="password" id="confirmPassword" name="confirmPassword" required>
+      </div>
+      <div class="input-group">
+        <label th:for="name">이름</label>
+        <input type="text" th:field="*{name}"id="name" name="name" required>
+      </div>
+      <div class="input-group">
+        <label th:for="degree">학력</label>
+        <select th:field="*{degree}" required>
+          <option value="">선택하세요</option>
+          <option value="elementary">초등학교</option>
+          <option value="middle">중학교</option>
+          <option value="high">고등학교</option>
+          <option value="university">대학교</option>
+          <option value="other">기타</option>
+        </select>
+      </div>
+      <div class="input-group" id="gradeGroup">
+        <label th:for="grade">학년</label>
+        <select th:field="*{grade}" required>
+          <option value="">학년을 선택하세요</option>
+        </select>
+      </div>
+      <button type="submit" class="submit-button">회원가입</button>
+    </form>
+    <div class="login-link">
+      <p>이미 계정이 있으신가요? <a href="/login">로그인</a></p>
+    </div>
+  </div>
+</div>
+<th:block th:replace="~{user/layout/footer::footer}" th:remove="tag"></th:block>
+<script>
+  document.getElementById('degree').addEventListener('change', function() {
+    const degree = this.value;
+    const gradeSelect = document.getElementById('grade');
+    const gradeGroup = document.getElementById('gradeGroup');
+
+    // 기존 학년 옵션을 지웁니다.
+    gradeSelect.innerHTML = '<option value="">학년을 선택하세요</option>';
+
+    // 기타 선택 시 학년 선택란 숨기기
+    if (degree === 'other') {
+      gradeGroup.style.display = 'none';
+      return; // 기타를 선택하면 학년 옵션을 더 이상 처리하지 않음
+    } else {
+      gradeGroup.style.display = 'block'; // 학년 선택란 표시
+    }
+
+    let years = [];
+
+    // 학교에 따른 학년도 배열
+    if (degree === 'elementary') {
+      years = [1, 2, 3, 4, 5, 6]; // 초등학교 1학년부터 6학년까지
+    } else if (degree === 'middle') {
+      years = [1, 2, 3]; // 중학교 1학년부터 3학년까지
+    } else if (degree === 'high') {
+      years = [1, 2, 3]; // 고등학교 1학년부터 3학년까지
+    } else if (degree === 'university') {
+      years = [1, 2, 3, 4]; // 대학교 1학년부터 4학년까지
+    }
+
+    // 학년도를 동적으로 추가
+    years.forEach(function(year) {
+      const option = document.createElement('option');
+      option.value = year;
+      option.textContent = `${year}학년`;
+      gradeSelect.appendChild(option);
+    });
+  });
+  function checkValues(form) {
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const password = form.password.value.trim();
+    const confirmPassword = form.confirmPassword.value.trim();
+    const degree = form.degree.value;
+    const grade = form.grade.value;
+
+    // 이름 유효성 검사
+    if (name === "") {
+      alert("이름을 입력하세요.");
+      form.name.focus();
+      return false;
+    }
+
+    // 이메일 유효성 검사
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailRegex.test(email)) {
+      alert("올바른 이메일 주소를 입력하세요.");
+      form.email.focus();
+      return false;
+    }
+
+    // 비밀번호 확인
+    if (password !== confirmPassword) {
+      alert("비밀번호가 일치하지 않습니다.");
+      form.password.focus();
+      return false;
+    }
+
+    // 비밀번호가 비어 있으면
+    if (password === "" || confirmPassword === "") {
+      alert("비밀번호를 입력하세요.");
+      form.password.focus();
+      return false;
+    }
+
+    // 학력 선택 확인
+    if (degree === "") {
+      alert("학력을 선택하세요.");
+      return false;
+    }
+
+    // 학년 선택 확인 (기타가 아닌 경우)
+    if (degree !== "other" && grade === "") {
+      alert("학년을 선택하세요.");
+      return false;
+    }
+
+    return true; // 모든 유효성 검사 통과 시 폼 제출
+  }
+</script>
+</body>
+</html>

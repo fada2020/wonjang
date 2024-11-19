@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인 페이지</title>
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+<th:block th:replace="~{user/layout/header::header('원장의 똥꼬쇼')}" th:remove="tag"></th:block>
+<div class="login-container">
+  <div class="login-form">
+    <h2>로그인</h2>
+    <form method="POST" th:object="${loginDto}" onsubmit="return checkValues(this);">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+      <div class="input-group">
+        <label th:for="email">아이디</label>
+        <input type="text" th:field="*{email}" placeholder="아이디를 입력하세요" required>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+      </div>
+      <div class="input-group">
+        <label th:for="password">비밀번호</label>
+        <input type="password" th:field="*{password}" placeholder="비밀번호를 입력하세요" required>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+      </div>
+      <button type="submit" class="submit-button">로그인</button>
+      <div class="signup-link">
+        <a href="/signup">회원가입</a>
+      </div>
+    </form>
+  </div>
+</div>
+<th:block th:replace="~{user/layout/footer::footer}" th:remove="tag"></th:block>
+<script>
+  function checkValues(form){
+    const email = form.email.value.trim();
+    const password = form.password.value.trim();
+
+    // 이메일 유효성 검사
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailRegex.test(email)) {
+      alert("올바른 이메일 주소를 입력하세요.");
+      form.email.focus();
+      return false;  // 폼 제출을 막습니다
+    }
+
+    // 비밀번호가 비어 있는지 확인
+    if (password === "") {
+      alert("비밀번호를 입력하세요.");
+      form.password.focus();
+      return false;  // 폼 제출을 막습니다
+    }
+
+    return true;  // 유효성 검사를 통과하면 폼을 제출합니다
+  }
+</script>
+</body>
+</html>
