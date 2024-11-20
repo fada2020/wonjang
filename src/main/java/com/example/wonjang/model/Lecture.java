@@ -14,9 +14,14 @@ public class Lecture extends BaseTimeEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
+    @Column(columnDefinition = "text")
     private String description;
     private String videoUrl;
     private String imgUrl;
+    private Integer runTime;
     @OneToMany(mappedBy = "lecture", fetch = FetchType.LAZY)
     private List<Feedback> feedbacks = new ArrayList<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "lecture_cover_id")
+    private LectureCover lectureCover;
 }

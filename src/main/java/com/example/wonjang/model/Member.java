@@ -52,6 +52,9 @@ public class Member extends BaseTimeEntity implements UserDetails {  // UserDeta
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<Feedback> feedbacks = new ArrayList<>();
 
+    @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
+    private RegisterCode registerCode;
+
     public boolean isFamily(){
         return this.role.getKey().equals(Role.FAMILY.getKey());
     }

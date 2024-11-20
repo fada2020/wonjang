@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -17,12 +18,25 @@ public class LectureService {
     public LectureService(LectureRepository lectureRepository) {
         this.lectureRepository = lectureRepository;
     }
-
+    public List<Lecture> findAll() {
+        return lectureRepository.findAll();
+    }
     public Page<Lecture> findAll(Pageable pageable) {
         return lectureRepository.findAll(pageable);
     }
 
     public Optional<Lecture> findById(Long id) {
         return lectureRepository.findById(id);
+    }
+
+    public List<Lecture> findByLectureCoverId(Long id) {
+        return lectureRepository.findByLectureCoverId(id);
+    }
+    public String formatRuntime(int runtimeInSeconds) {
+        int hours = runtimeInSeconds / 3600;
+        int minutes = (runtimeInSeconds % 3600) / 60;
+        int seconds = runtimeInSeconds % 60;
+
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 }

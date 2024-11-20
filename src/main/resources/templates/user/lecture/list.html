@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>강의 리스트</title>
+    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
+</head>
+<body>
+<th:block th:replace="~{user/layout/header::header('원장의 똥꼬쇼')}" th:remove="tag"></th:block>
+<h1>Lecture List</h1>
+<div>
+    <div th:each="lectureCover : ${lectureCovers}" class="lecture-card" >
+        <a th:href="@{/lecture/info/{id}(id=${lectureCover.id})}">
+            <img class="lecture-image" th:src="${lectureCover.imgUrl}" alt="Lecture Image"/>
+            <h3 th:text="${lectureCover.title}">Lecture Title</h3>
+            <p th:text="${lectureCover.description}">Lecture Description</p>
+        </a>
+    </div>
+
+    <div class="pagination">
+            <span th:each="i : ${#numbers.sequence(1, lectureCovers.totalPages)}">
+                <a th:href="@{/lecture(page=${i})}" th:text="${i}"></a>
+            </span>
+    </div>
+</div>
+
+<th:block th:replace="~{user/layout/footer::footer}" th:remove="tag"></th:block>
+</body>
+
+</html>
