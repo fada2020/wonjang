@@ -1,134 +1,173 @@
+/* 기본 스타일 */
 body {
     font-family: 'Noto Sans KR', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    background-color: #f7f7f7;
+    background-color: #f4f6f9;
+    color: #333;
 }
 
+/* 헤더 스타일 */
 header {
     background-color: #0056b3;
     color: #ffffff;
-    padding: 15px;
+    padding: 20px;
     text-align: center;
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: bold;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 4px solid #004494;
 }
 
 .header-title {
     flex: 1;
     text-align: center;
+    font-size: 28px;
+    letter-spacing: 1px;
 }
 
 .header-buttons {
     display: flex;
-    gap: 10px;
+    gap: 12px;
 }
 
 .header-buttons > a {
     background-color: #ffffff;
     color: #0056b3;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
+    padding: 12px 25px;
+    border-radius: 6px;
     text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
 
 .header-buttons > a:hover {
     background-color: #004494;
     color: #ffffff;
+    transform: translateY(-2px);
 }
 
+/* 네비게이션 스타일 */
 nav {
     background-color: #004494;
     display: flex;
     justify-content: space-around;
-    padding: 10px 0;
+    padding: 15px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 nav a {
     color: #ffffff;
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 5px;
-    transition: background 0.3s;
+    font-size: 18px;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
 nav a:hover {
     background-color: #003366;
+    transform: translateY(-2px);
 }
 
+/* 컨테이너 스타일 */
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
 }
 
 .banner {
     width: 100%;
-    max-width: 1200px;
-    margin-bottom: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
 }
 
 .banner img {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 15px;
+    transition: all 0.3s ease;
 }
 
+.banner img:hover {
+    transform: scale(1.05);
+}
+
+/* 섹션 스타일 */
 .section {
-    width: 100%;
-    max-width: 1200px;
     background-color: #ffffff;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
 }
 
 footer {
     background-color: #003366;
     color: #ffffff;
     text-align: center;
-    padding: 15px;
-    margin-top: 20px;
+    padding: 20px;
+    font-size: 16px;
+    margin-top: 40px;
+    letter-spacing: 0.5px;
 }
 
+/* 강의 카드 스타일 */
 .lecture-card {
     border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px;
-    display: inline-block;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px;
     width: 30%;
     text-align: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 .lecture-card img {
+    width: 100%;
     height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
 }
 
+.lecture-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.lecture-card img:hover {
+    transform: scale(1.05);
+}
+
+/* 페이지네이션 스타일 */
 .pagination {
-    margin: 20px 0;
+    margin: 30px 0;
+    text-align: center;
 }
 
 .pagination a {
-    margin: 0 5px;
-    text-decoration: none;
-    padding: 5px 10px;
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
     border: 1px solid #ddd;
-    border-radius: 3px;
+    color: #0056b3;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
 }
 
-.lecture-image {
-    width: 100%;
-    max-width: 400px;
-    margin-bottom: 20px;
+.pagination a:hover {
+    background-color: #0056b3;
+    color: #ffffff;
+    transform: translateY(-2px);
 }
 
 /* 로그인 폼 배치 */
@@ -136,69 +175,59 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 70px); /* header 높이를 빼고 화면 세로 중앙에 위치 */
+    height: 100vh;
 }
 
 .login-form {
     background-color: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
+    transition: all 0.3s ease;
 }
 
 .login-form h2 {
-    margin-bottom: 20px;
-    font-size: 28px;
+    margin-bottom: 25px;
+    font-size: 30px;
     color: #333;
+    letter-spacing: 1px;
 }
 
-/* 입력 필드 스타일 */
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     text-align: left;
 }
 
 .input-group label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 5px;
+    font-size: 15px;
+    margin-bottom: 8px;
     color: #555;
 }
 
 .input-group input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 6px;
     box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
 
 .input-group select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #ffffff;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
     background-image: url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M7%2010L12%2015L17%2010H7Z%22%20fill%3D%22%23A2A2A2%22%2F%3E%3C%2Fsvg%3E');
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 15px;
-    padding-right: 30px;
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-sizing: border-box;
-}
-
-.input-group select option {
-    padding: 10px;
-    background-color: #ffffff;
-    color: #333;
 }
 
 .input-group input:focus,
@@ -210,27 +239,29 @@ footer {
 /* 로그인 버튼 스타일 */
 .submit-button {
     width: 100%;
-    padding: 14px;
+    padding: 15px;
     background-color: #0056b3;
     color: white;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 6px;
+    font-size: 18px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 }
 
 .submit-button:hover {
     background-color: #003d7a;
+    transform: translateY(-2px);
 }
 
 /* 회원가입 링크 */
 .signup-link {
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .signup-link a {
     color: #0056b3;
+    font-weight: 500;
     text-decoration: none;
 }
 
@@ -241,20 +272,50 @@ footer {
 /* 햄버거 메뉴 스타일 */
 .hamburger {
     display: none;
-    font-size: 24px;
+    font-size: 30px;
     background: none;
     border: none;
     color: white;
     cursor: pointer;
 }
+
 .close-button {
     display: none;
+}
+/* textarea 기본 스타일 */
+textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    resize: vertical; /* 수직으로만 크기 조정 가능 */
+    background-color: #fff;
+    color: #333;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* 포커스 시 스타일 */
+textarea:focus {
+    border-color: #0056b3;
+    outline: none;
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.2);
+}
+
+/* 텍스트 영역이 비어 있을 때의 스타일 */
+textarea:placeholder-shown {
+    color: #aaa;
+}
+
+/* placeholder 텍스트 스타일 */
+textarea::placeholder {
+    color: #aaa;
+    font-style: italic;
 }
 #loginButton, #myPageButton, #logoutButton{
     display: none;
 }
-
-/* 작은 화면에서 반응형 스타일 */
 @media (max-width: 768px) {
     header {
         flex-wrap: wrap;
@@ -291,16 +352,12 @@ footer {
         text-align: left;
     }
 
-    .header-buttons a {
-        display: none; /* 작은 화면에서 버튼들을 내비게이션 메뉴 안으로 이동 */
+    .hamburger.active + nav {
+        display: flex;
     }
 
-    .hamburger.active + nav {
-        display: flex; /* 햄버거 버튼 클릭 시 메뉴 열림 */
-    }
-    /* 닫기 버튼 스타일 */
     .close-button {
-        font-size: 24px;
+        font-size: 28px;
         color: #ffffff;
         background: none;
         border: none;
@@ -310,9 +367,92 @@ footer {
         right: 10px;
         display: block;
     }
+}
+/* 비디오 플레이어 컨테이너 */
+.custom-video-player {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
 
-    .close-button:hover {
-        color: #ff0000;
+/* 비디오 태그 */
+.custom-video-player video {
+    display: block;
+    width: 100%; /* 부모 크기에 맞춤 */
+    height: auto;
+    cursor: pointer;
+}
+
+/* 컨트롤바 */
+.controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #fff;
+    font-size: 14px;
+}
+
+/* 재생/일시정지 버튼 */
+.play-btn {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* 타임라인 */
+.timeline {
+    flex: 1;
+    margin: 0 10px;
+    position: relative;
+}
+
+.progress {
+    width: 100%;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background-color: #1abc9c;
+    border-radius: 5px;
+}
+
+/* 볼륨 컨트롤 */
+.volume {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-right: 10px;
+}
+
+.volume input {
+    width: 80px; /* 슬라이더 크기 */
+    cursor: pointer;
+}
+
+/* 반응형 조정 */
+@media (max-width: 768px) {
+    .controls {
+        font-size: 12px; /* 모바일에서 글자 크기 축소 */
+        padding: 8px;
     }
-
+    .volume input {
+        width: 60px; /* 슬라이더 크기 축소 */
+    }
 }

@@ -23,6 +23,7 @@ public class UpdateMemberDto {
     private String grade;
     private MultipartFile pictureFile;
     private String picture;
+    private String mobile;
 
 
 

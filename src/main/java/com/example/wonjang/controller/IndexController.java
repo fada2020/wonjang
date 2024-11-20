@@ -6,6 +6,7 @@ import com.example.wonjang.dto.UpdateMemberDto;
 import com.example.wonjang.dto.UserDto;
 import com.example.wonjang.model.Member;
 import com.example.wonjang.service.MemberService;
+import com.example.wonjang.utils.FileUtil;
 import io.micrometer.common.util.StringUtils;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
@@ -21,15 +22,18 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
 @Controller
 public class IndexController {
     private final MemberService memberService;
+    private final FileUtil fileUtil;
     private final BCryptPasswordEncoder encoder;
-    public IndexController(MemberService memberService) {
+    public IndexController(MemberService memberService, FileUtil fileUtil) {
         this.memberService = memberService;
+        this.fileUtil = fileUtil;
         this.encoder = new BCryptPasswordEncoder();
     }
 
@@ -103,6 +107,9 @@ public class IndexController {
         if(optionalMember.isEmpty()) return "redirect:/";
         Member member = optionalMember.get();
         model.addAttribute("member", member.toSignUpDto());
+        List<Integer> yearsByDegree = memberService.getYearsByDegree(member.getDegree());
+        System.out.println("yearsByDegree = " + yearsByDegree);
+        model.addAttribute("yearsByDegree", yearsByDegree);
         model.addAttribute("updateMemberDto", new UpdateMemberDto() );
         return "user/mypage";
     }
@@ -112,7 +119,7 @@ public class IndexController {
             , @SessionAttribute("user") UserDto userDto
         , @Valid @ModelAttribute("updateMemberDto") UpdateMemberDto updateMemberDto
         , BindingResult bindingResult
-    ){
+    ) throws Exception {
         if (bindingResult.hasErrors()) {
             model.addAttribute("updateMemberDto", updateMemberDto);
             return "user/mypage";
@@ -124,12 +131,12 @@ public class IndexController {
         Optional<Member> optionalMember = memberService.findByEmail(userDto.getEmail());
         if(optionalMember.isEmpty()) return "redirect:/";
         Member member = optionalMember.get();
-        if(updateMemberDto.getPicture() != null) {
-
+        if(updateMemberDto.getPictureFile() != null) {
+            String path = fileUtil.saveFile(updateMemberDto.getPictureFile(), member.getId().toString());
+            member.updatePicture(path);
         }
         member.updateMember(updateMemberDto);
-        System.out.println("updateMemberDto = " + updateMemberDto);
-        model.addAttribute("updateMemberDto", new UpdateMemberDto() );
+        memberService.save(member);
         return "redirect:/mypage";
     }
 }

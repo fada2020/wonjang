@@ -1,5 +1,6 @@
 package com.example.wonjang.config;
 
+import com.example.wonjang.handler.CustomAccessDeniedHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -21,6 +22,12 @@ import java.util.List;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
+
+    public SecurityConfig(CustomAccessDeniedHandler customAccessDeniedHandler) {
+        this.customAccessDeniedHandler = customAccessDeniedHandler;
+    }
+
     @Bean
     BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
@@ -44,9 +51,9 @@ public class SecurityConfig {
                                 //.requestMatchers("/", "/member/*").hasRole(Role.USER.name())
                                 //.requestMatchers("/admins/**", "/api/v1/admins/**").hasRole(Role.ROLE_ADMIN.name())
                                 .anyRequest().authenticated()
+
                 )
-
-
+//                .exceptionHandling(e ->  e.accessDeniedHandler(customAccessDeniedHandler))
         ;
         return http.build();
     }

@@ -7,125 +7,117 @@
     <title>강의</title>
     <link rel="stylesheet" th:href="@{/assets/css/style.css}">
     <style>
-        /* 비디오 플레이어 컨테이너 */
-        .custom-video-player {
-            width: 90%;
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #000;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            position: relative;
-        }
-
-        /* 비디오 태그 */
-        .custom-video-player video {
-            display: block;
-            width: 100%; /* 부모 크기에 맞춤 */
-            height: auto;
-            cursor: pointer;
-        }
-
-        /* 컨트롤바 */
-        .controls {
+        .container {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 10px;
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            color: #fff;
-            font-size: 14px;
         }
 
-        /* 재생/일시정지 버튼 */
-        .play-btn {
-            background-color: transparent;
-            border: none;
-            color: #fff;
-            font-size: 20px;
-            cursor: pointer;
+        .custom-video-player {
+            width: 60%;
         }
 
-        /* 타임라인 */
-        .timeline {
-            flex: 1;
-            margin: 0 10px;
-            position: relative;
+        .lecture-feedback {
+            width: 35%;
+            padding-left: 20px;
+            border-left: 2px solid #ddd;
         }
 
-        .progress {
-            width: 100%;
-            height: 4px;
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .progress-bar {
-            width: 0;
-            height: 100%;
-            background-color: #1abc9c;
-            border-radius: 5px;
-        }
-
-        /* 볼륨 컨트롤 */
-        .volume {
+        .feedback-form {
             display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-right: 10px;
+            flex-direction: column;
         }
 
-        .volume input {
-            width: 80px; /* 슬라이더 크기 */
+        .feedback-form textarea {
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+
+        .feedback-form button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
             cursor: pointer;
         }
 
-        /* 반응형 조정 */
-        @media (max-width: 768px) {
-            .controls {
-                font-size: 12px; /* 모바일에서 글자 크기 축소 */
-                padding: 8px;
-            }
-            .volume input {
-                width: 60px; /* 슬라이더 크기 축소 */
-            }
+        .feedback-form button:hover {
+            background-color: #45a049;
+        }
+
+        .feedback-list {
+            margin-bottom: 20px;
+        }
+
+        .feedback-item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+
+        .login-prompt {
+            color: #ff0000;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 <th:block th:replace="~{user/layout/header::header('원장의 똥꼬쇼')}" th:remove="tag"></th:block>
 
-<div class="custom-video-player">
-    <video id="videoPlayer">
-        <source th:src="@{${lecture.videoUrl}}" type="video/mp4">
-        <p>현재 브라우저는 비디오 태그를 지원하지 않습니다.</p>
-    </video>
-    <div class="controls">
-        <!-- 5초 뒤로 -->
-        <button class="play-btn" id="rewindBtn">⏪ </button>
+<div class="container">
+    <div class="custom-video-player">
+        <video id="videoPlayer">
+            <source th:src="@{${lecture.videoUrl}}" type="video/mp4">
+            <p>현재 브라우저는 비디오 태그를 지원하지 않습니다.</p>
+        </video>
+        <div class="controls">
+            <!-- 5초 뒤로 -->
+            <button class="play-btn" id="rewindBtn">⏪</button>
 
-        <!-- 재생/일시정지 버튼 -->
-        <button class="play-btn" id="playPauseBtn">&#9654;</button>
+            <!-- 재생/일시정지 버튼 -->
+            <button class="play-btn" id="playPauseBtn">&#9654;</button>
 
-        <!-- 5초 앞으로 -->
-        <button class="play-btn" id="forwardBtn"> ⏩</button>
+            <!-- 5초 앞으로 -->
+            <button class="play-btn" id="forwardBtn"> ⏩</button>
 
-        <!-- 타임라인 -->
-        <div class="timeline">
-            <div class="progress">
-                <div class="progress-bar" id="progressBar"></div>
+            <!-- 타임라인 -->
+            <div class="timeline">
+                <div class="progress">
+                    <div class="progress-bar" id="progressBar"></div>
+                </div>
+            </div>
+
+            <!-- 볼륨 컨트롤 -->
+            <div class="volume">
+                <label for="volumeControl">🔊</label>
+                <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+            </div>
+        </div>
+    </div>
+    <!-- 강의 후기 섹션 -->
+    <div class="lecture-feedback">
+        <h3>강의 후기</h3>
+        <!-- 후기 리스트 -->
+        <div class="feedback-list">
+            <div th:each="feedback : ${lecture.feedbacks}">
+                <div class="feedback-item">
+                    <p><strong th:text="${feedback.member.name}">User Name</strong> 님의 후기:</p>
+                    <p th:text="${feedback.content}">강의 후기 내용</p>
+                </div>
             </div>
         </div>
 
-        <!-- 볼륨 컨트롤 -->
-        <div class="volume">
-            <label for="volumeControl">🔊</label>
-            <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="0.5">
+        <div th:if="${session.user != null}">
+
+            <!-- 로그인한 경우 강의 후기 작성 폼 -->
+            <form class="feedback-form" th:action="@{/submit-feedback}" method="post" th:object="${feedback}">
+                <textarea name="feedback" placeholder="강의 후기를 작성해주세요..."></textarea>
+                <button type="submit">후기 제출</button>
+            </form>
+        </div>
+        <div th:unless="${session.user != null}">
+            <!-- 로그인하지 않은 경우 로그인 페이지로 이동 안내 -->
+            <p class="login-prompt">후기를 남기려면 <a href="/login">로그인</a> 해주세요.</p>
         </div>
     </div>
 </div>

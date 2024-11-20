@@ -1,11 +1,12 @@
 package com.example.wonjang.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Entity
 public class Lecture extends BaseTimeEntity{
@@ -16,5 +17,6 @@ public class Lecture extends BaseTimeEntity{
     private String description;
     private String videoUrl;
     private String imgUrl;
-
+    @OneToMany(mappedBy = "lecture", fetch = FetchType.LAZY)
+    private List<Feedback> feedbacks = new ArrayList<>();
 }

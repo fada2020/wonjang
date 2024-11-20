@@ -20,12 +20,13 @@
     </div>
 
     <div class="pagination">
-            <span th:each="i : ${#numbers.sequence(0, lectures.totalPages -1)}">
-                <a th:href="@{/lecture(page=${i})}" th:text="${i+1}"></a>
+            <span th:each="i : ${#numbers.sequence(1, lectures.totalPages)}">
+                <a th:href="@{/lecture(page=${i})}" th:text="${i}"></a>
             </span>
     </div>
 </div>
 
 <th:block th:replace="~{user/layout/footer::footer}" th:remove="tag"></th:block>
 </body>
+
 </html>

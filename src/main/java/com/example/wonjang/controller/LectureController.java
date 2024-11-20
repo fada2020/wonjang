@@ -50,6 +50,7 @@ public class LectureController {
         Optional<Lecture>optionalLecture = lectureService.findById(id);
         if(optionalLecture.isPresent()) {
             model.addAttribute("lecture", optionalLecture.get());
+
             return "user/lecture/player";
         } else {
             return "redirect:/lecture";

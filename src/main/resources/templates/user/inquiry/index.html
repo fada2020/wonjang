@@ -9,7 +9,35 @@
 </head>
 <body>
 <th:block th:replace="~{user/layout/header::header('원장의 똥꼬쇼')}" th:remove="tag"></th:block>
-문의
+
+<div class="container">
+    <h2 class="page-title">문의하기</h2>
+
+
+    <!-- 문의 폼 -->
+    <form method="post" th:object="${inquiryDto}" class="inquiry-form">
+        <div class="input-group">
+            <label th:for="title">제목</label>
+            <input type="text" th:field="*{title}" placeholder="문의 제목을 입력하세요" required class="form-control" />
+        </div>
+
+        <div class="input-group">
+            <label th:for="content">내용</label>
+            <textarea th:field="*{content}" placeholder="문의 내용을 입력하세요" required class="form-control" rows="20"></textarea>
+        </div>
+
+        <div class="input-group">
+            <button type="submit" class="submit-button">전송</button>
+        </div>
+    </form>
+</div>
+
 <th:block th:replace="~{user/layout/footer::footer}" th:remove="tag"></th:block>
+<script th:inline="javascript">
+    const message = /*[[${message}]]*/null;
+    if (message) {
+        alert('문의가 접수되었습니다!');
+    }
+</script>
 </body>
 </html>

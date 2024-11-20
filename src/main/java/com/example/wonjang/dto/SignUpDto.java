@@ -21,16 +21,18 @@ public class SignUpDto {
     @NotBlank
     private String degree;
     private String grade;
+    private String mobile;
     private String picture;
 
     @Builder
-    public SignUpDto(String email, String name, String password, String confirmPassword, String degree, String grade, String picture) {
+    public SignUpDto(String email, String name, String password, String confirmPassword, String degree, String grade, String mobile, String picture) {
         this.email = email;
         this.name = name;
         this.password = password;
         this.confirmPassword = confirmPassword;
         this.degree = degree;
         this.grade = grade;
+        this.mobile = mobile;
         this.picture = picture;
     }
 
@@ -46,6 +48,7 @@ public class SignUpDto {
                 .name(name)
                 .degree(degree)
                 .grade(grade)
+                .mobile(mobile)
                 .build();
     }
 }

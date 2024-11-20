@@ -37,7 +37,7 @@ public class Member extends BaseTimeEntity implements UserDetails {  // UserDeta
     private String password;
     private String picture;
     private String provider;
-
+    private String mobile;
     @Builder.Default
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -45,6 +45,13 @@ public class Member extends BaseTimeEntity implements UserDetails {  // UserDeta
     @Builder.Default
     @Column(name = "isEnabled", columnDefinition = "VARCHAR(1) default 'N'")
     private String isEnabled = "N";
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<Inquiry> inquiries = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+    private List<Feedback> feedbacks = new ArrayList<>();
+
     public boolean isFamily(){
         return this.role.getKey().equals(Role.FAMILY.getKey());
     }
@@ -117,6 +124,7 @@ public class Member extends BaseTimeEntity implements UserDetails {  // UserDeta
                 .picture(this.picture)
                 .grade(this.grade)
                 .degree(this.degree)
+                .mobile(this.mobile)
                 .build();
     }
 
@@ -126,6 +134,7 @@ public class Member extends BaseTimeEntity implements UserDetails {  // UserDeta
         this.grade = updateValue(this.grade, updateMemberDto.getGrade());
         this.picture = updateValue(this.picture, updateMemberDto.getPicture());
         this.password = updateValue(this.password, updateMemberDto.getPassword());
+        this.mobile = updateValue(this.password, updateMemberDto.getMobile());
     }
 
     private String updateValue(String currentValue, String newValue) {
@@ -133,5 +142,9 @@ public class Member extends BaseTimeEntity implements UserDetails {  // UserDeta
             return newValue;
         }
         return currentValue;
+    }
+
+    public void updatePicture(String picture) {
+        this.picture = updateValue(this.picture,picture);
     }
 }
