@@ -4,6 +4,7 @@ import com.example.wonjang.model.Feedback;
 import com.example.wonjang.service.LectureService;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -17,10 +18,10 @@ public class ApiV1Controller {
         this.lectureService = lectureService;
     }
     @PostMapping("/feedback")
-    public String feedback(
+    public ResponseEntity feedback(
             @Valid @ModelAttribute("feedback") Feedback feedback
 
     ) {
-
+    return ResponseEntity.ok().build();
     }
 }
