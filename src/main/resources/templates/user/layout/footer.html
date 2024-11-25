@@ -1,6 +1,144 @@
 <th:block th:fragment= "footer()">
+  <style>
+    /* Footer 전체 스타일 */
+    footer {
+      background-color: #f9f9f9;
+      padding: 20px 40px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      color: #333;
+    }
+
+    /* Footer container 스타일 */
+    .footer-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Left Section 스타일 */
+    .left-section {
+      flex: 1;
+      margin-right: 20px;
+    }
+
+    .menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex; /* Flexbox 적용 */
+      gap: 15px; /* 각 항목 사이의 간격 */
+    }
+
+    .menu li {
+      margin: 0; /* 세로 여백 제거 */
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #0073e6;
+      font-size: 14px;
+    }
+
+    .menu a:hover {
+      text-decoration: underline;
+    }
+    .address {
+      font-size: 12px;
+      color: #666;
+    }
+
+    .address p {
+      margin: 5px 0;
+    }
+
+    .copy {
+      margin-top: 10px;
+      color: #999;
+      font-size: 12px;
+    }
+
+    /* Right Section 스타일 */
+    .helpdesk {
+      flex-basis: 300px;
+    }
+
+    .helpdesk strong {
+      display: block;
+      font-size: 16px;
+      color: #0073e6;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .helpdesk .time p,
+    .helpdesk .info p,
+    .helpdesk a {
+      margin: 5px 0;
+      font-size: 14px;
+    }
+
+    .helpdesk a {
+      text-decoration: none;
+      color: #0073e6;
+    }
+
+    .helpdesk a:hover {
+      text-decoration: underline;
+    }
+
+    .ismsp {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #666;
+    }
+
+  </style>
   <footer>
-    <p>&copy; 2024 원장의 똥꼬쇼</p>
+    <div class="footer-container">
+      <!-- Left Section -->
+      <div class="left-section">
+        <ul class="menu">
+          <li><a href="https://sso.ebs.co.kr/policy/privacy?fsdc=">개인정보처리방침</a></li>
+          <li><a href="/ebs/pot/poth/retrieveIntroduceEBSi.ebs">원장 소개</a></li>
+          <li><a href="https://home.ebs.co.kr/copyright/main" target="_blank">저작권침해제보</a></li>
+          <li><a href="/ebs/pot/poth/RetrieveHelpBgnGud.ebs">사이트이용안내</a></li>
+          <li><a href="https://sso.ebs.co.kr/policy/termsInfo">이용약관</a></li>
+          <li><a href="/ebs/pot/poth/RetrieveHelpCstmUs.ebs">이용문의</a></li>
+          <li><a href="/ebs/pot/poth/RetrieveHelpCstmFaq.ebs">FAQ</a></li>
+          <li><a href="https://www.togetherschool.go.kr" target="_blank">함께학교</a></li>
+        </ul>
+        <div class="address">
+          <p>06207 서울특별시 강남구 도곡로63길 16</p>
+          <p>사업자등록번호 있는지 모름 (항문외과전문의 박원장)</p>
+
+          <div class="copy">
+            항문외과 교육격차 해소 및 사교육비 경감을 위해 항문인들과 원장이 함께 만들어 갑니다.
+            <p>Copyright ©WONJANG. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Section -->
+      <div class="helpdesk">
+        <strong onclick="frontCheckGo()">고객센터</strong>
+        <div class="time" onclick="frontHtmlGo()">
+          <p>평일 08시 ~ 18시</p>
+          <p>(점심시간 12시 ~ 13시, 주말 및 공휴일 휴무)</p>
+        </div>
+        <div class="info">
+          <p>1588-1580</p>
+          <a href="javascript:window.open('http://www.0302.co.kr');">원격지원</a>
+        </div>
+        <a href="mailto:helpwonjang@gmail.com" title="메일쓰기로 이동">helpdesk@원장.닷컴</a>
+        <p class="ismsp">
+          <span class="blind">ISMSP</span>
+          <em>[인증범위] 항문 교육포털 웹서비스<br>[유효기간] 2022.05.04~2025.05.03</em>
+        </p>
+      </div>
+    </div>
   </footer>
   <script>
     // 햄버거 메뉴 버튼 클릭 시 토글 동작

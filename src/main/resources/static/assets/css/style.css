@@ -107,15 +107,7 @@ nav a:hover {
     margin-bottom: 30px;
 }
 
-footer {
-    background-color: #003366;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px;
-    font-size: 16px;
-    margin-top: 40px;
-    letter-spacing: 0.5px;
-}
+
 
 /* 강의 카드 스타일 */
 .lecture-card {
