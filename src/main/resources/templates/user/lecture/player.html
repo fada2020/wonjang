@@ -1,69 +1,8 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>강의</title>
-    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
-    <style>
-        .container {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .custom-video-player {
-            width: 60%;
-        }
-
-        .lecture-feedback {
-            width: 35%;
-            padding-left: 20px;
-            border-left: 2px solid #ddd;
-        }
-
-        .feedback-form {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .feedback-form textarea {
-            width: 100%;
-            height: 150px;
-            margin-bottom: 10px;
-            padding: 10px;
-        }
-
-        .feedback-form button {
-            padding: 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .feedback-form button:hover {
-            background-color: #45a049;
-        }
-
-        .feedback-list {
-            margin-bottom: 20px;
-        }
-
-        .feedback-item {
-            border-bottom: 1px solid #ddd;
-            padding: 10px 0;
-        }
-
-        .login-prompt {
-            color: #ff0000;
-            font-size: 16px;
-        }
-    </style>
-</head>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/layout/layout::layout( ~{::title}, ~{::link}, ~{::body}, ~{::script})}">
+<title>강의 페이지</title>
+<link rel="stylesheet" th:href="@{/assets/css/user/player.css}">
 <body>
-<th:block th:replace="~{user/layout/header::header('원장의 똥꼬쇼')}" th:remove="tag"></th:block>
-
 <div class="container">
     <div class="custom-video-player">
         <video id="videoPlayer">
@@ -107,7 +46,7 @@
             </div>
         </div>
 
-        <div th:if="${session.user != null}">
+        <div sec:authorize="isAuthenticated()">
 
             <!-- 로그인한 경우 강의 후기 작성 폼 -->
             <form class="feedback-form" th:action="@{/submit-feedback}" method="post" th:object="${feedback}">
@@ -115,13 +54,14 @@
                 <button type="submit">후기 제출</button>
             </form>
         </div>
-        <div th:unless="${session.user != null}">
+        <div sec:authorize="isAnonymous()">
             <!-- 로그인하지 않은 경우 로그인 페이지로 이동 안내 -->
             <p class="login-prompt">후기를 남기려면 <a href="/login">로그인</a> 해주세요.</p>
         </div>
     </div>
 </div>
-<th:block th:replace="~{user/layout/footer::footer}" th:remove="tag"></th:block>
+
+</body>
 <script>
     // 요소 선택
     const video = document.getElementById('videoPlayer');
@@ -179,5 +119,4 @@
 </script>
 
 
-</body>
 </html>

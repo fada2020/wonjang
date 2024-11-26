@@ -1,0 +1,52 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.custom-video-player {
+    width: 60%;
+}
+
+.lecture-feedback {
+    width: 35%;
+    padding-left: 20px;
+    border-left: 2px solid #ddd;
+}
+
+.feedback-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.feedback-form textarea {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.feedback-form button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.feedback-form button:hover {
+    background-color: #45a049;
+}
+
+.feedback-list {
+    margin-bottom: 20px;
+}
+
+.feedback-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.login-prompt {
+    color: #ff0000;
+    font-size: 16px;
+}

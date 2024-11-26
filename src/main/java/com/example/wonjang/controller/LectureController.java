@@ -4,6 +4,7 @@ import com.example.wonjang.annotation.CurrentUser;
 import com.example.wonjang.dto.UserDto;
 import com.example.wonjang.model.Lecture;
 import com.example.wonjang.model.LectureCover;
+import com.example.wonjang.model.Member;
 import com.example.wonjang.service.LectureCoverService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -34,7 +35,7 @@ public class LectureController {
         this.lectureService = lectureService;
         this.lectureCoverService = lectureCoverService;
     }
-    @GetMapping("")
+    @GetMapping("/list")
     public String lectureIndex(
             Model model
             , @PageableDefault(size = 10) @SortDefault.SortDefaults(@SortDefault(sort="id", direction = Sort.Direction.DESC)) Pageable pageable){
@@ -58,19 +59,16 @@ public class LectureController {
     @GetMapping("/{videoId}")
     public String lectureIndex(
              @PathVariable("videoId") Long videoId
-            , @SessionAttribute(value = "admin", required = false) UserDto admin
-            , @SessionAttribute(value = "user", required = false) UserDto user
+             , @CurrentUser Member member
             , Model model
     ){
-        if (admin == null && user == null) {
-            return "redirect:/login";
-        }
+
         Optional<Lecture>optionalLecture = lectureService.findById(videoId);
         if(optionalLecture.isPresent()) {
             model.addAttribute("lecture", optionalLecture.get());
             return "user/lecture/player";
         } else {
-            return "redirect:/lecture";
+            return "redirect:/lecture/list";
         }
     }
 }

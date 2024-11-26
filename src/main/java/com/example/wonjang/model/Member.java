@@ -45,13 +45,13 @@ public class Member extends BaseTimeEntity implements UserDetails {  // UserDeta
     @Builder.Default
     @Column(name = "isEnabled", columnDefinition = "VARCHAR(1) default 'N'")
     private String isEnabled = "N";
-
+    @ToString.Exclude
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<Inquiry> inquiries = new ArrayList<>();
-
+    @ToString.Exclude
     @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     private List<Feedback> feedbacks = new ArrayList<>();
-
+    @ToString.Exclude
     @OneToOne(mappedBy = "member", cascade = CascadeType.ALL)
     private RegisterCode registerCode;
 

@@ -1,0 +1,33 @@
+<th:block th:fragment="scripts(script)">
+    <script>
+        // 햄버거 메뉴 버튼 클릭 시 토글 동작
+        document.getElementById('hamburgerButton').addEventListener('click', function() {
+            // 햄버거 버튼에 active 클래스 토글
+            this.classList.toggle('active');
+
+            // 내비게이션 메뉴에 active 클래스 토글
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // 닫기 버튼 클릭 시 내비게이션 메뉴 닫기
+        document.getElementById('closeMenuButton').addEventListener('click', function() {
+            // 내비게이션 메뉴와 햄버거 버튼에서 active 클래스 제거
+            document.getElementById('navMenu').classList.remove('active');
+            document.getElementById('hamburgerButton').classList.remove('active');
+        });
+        // 내비게이션 메뉴 외부 클릭 시 메뉴 닫기
+        document.addEventListener('click', function(event) {
+            const navMenu = document.getElementById('navMenu');
+            const hamburgerButton = document.getElementById('hamburgerButton');
+
+            // 내비게이션 메뉴와 햄버거 버튼 외부 클릭 시 메뉴 닫기
+            if (!navMenu.contains(event.target) && !hamburgerButton.contains(event.target)) {
+                navMenu.classList.remove('active');
+                hamburgerButton.classList.remove('active');
+            }
+        });
+    </script>
+    <th:block th:if="${script != null}">
+        <th:block th:replace="${script}" />
+    </th:block>
+</th:block>

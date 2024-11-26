@@ -1,5 +1,6 @@
 package com.example.wonjang.controller;
 
+import com.example.wonjang.annotation.CurrentUser;
 import com.example.wonjang.dto.LoginDto;
 import com.example.wonjang.dto.SignUpDto;
 import com.example.wonjang.dto.UpdateMemberDto;
@@ -8,11 +9,19 @@ import com.example.wonjang.model.Member;
 import com.example.wonjang.service.MemberService;
 import com.example.wonjang.utils.FileUtil;
 import io.micrometer.common.util.StringUtils;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
+import org.springframework.security.web.savedrequest.RequestCache;
+import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +39,7 @@ import java.util.Optional;
 public class IndexController {
     private final MemberService memberService;
     private final FileUtil fileUtil;
+
     private final BCryptPasswordEncoder encoder;
     public IndexController(MemberService memberService, FileUtil fileUtil) {
         this.memberService = memberService;
@@ -51,33 +61,7 @@ public class IndexController {
         session.invalidate();
         return "redirect:/";
     }
-    @PostMapping("/login")
-    public String loginProcess(
-            Model model
-            , HttpSession session
-            , @Valid @ModelAttribute("loginDto") LoginDto loginDto
-            , BindingResult bindingResult
-    ){
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("loginDto", loginDto);
-            return "user/login";
-        }
-        Optional<Member>optionalMember = memberService.findByEmail(loginDto.getEmail());
-        if(optionalMember.isEmpty()) {
-            bindingResult.addError(new FieldError("loginDto","email", "이메일 또는 비밀번호를 확인해주세요."));
-            model.addAttribute("loginDto", loginDto);
-            return "user/login";
-        }
-        Member member = optionalMember.get();
-        String password = member.getPassword();
-        if(!encoder.matches(loginDto.getPassword(), password)) {
-            bindingResult.addError(new FieldError("loginDto","email", "이메일 또는 비밀번호를 확인해주세요."));
-            model.addAttribute("loginDto", loginDto);
-            return "user/login";
-        }
-        session.setAttribute("user", member.toDto() );
-        return "redirect:/";
-    }
+
     @GetMapping("/signup")
     public String signup(Model model){
         model.addAttribute("signUpDto", new SignUpDto());
@@ -100,12 +84,11 @@ public class IndexController {
         memberService.save(member);
         return "redirect:/login";
     }
+
     @GetMapping("/mypage")
     public String mypage(Model model
-    , @SessionAttribute("user") UserDto userDto){
-        Optional<Member>optionalMember = memberService.findByEmail(userDto.getEmail());
-        if(optionalMember.isEmpty()) return "redirect:/";
-        Member member = optionalMember.get();
+            , @CurrentUser Member member
+    ){
         model.addAttribute("member", member.toSignUpDto());
         List<Integer> yearsByDegree = memberService.getYearsByDegree(member.getDegree());
         System.out.println("yearsByDegree = " + yearsByDegree);
@@ -113,10 +96,11 @@ public class IndexController {
         model.addAttribute("updateMemberDto", new UpdateMemberDto() );
         return "user/mypage";
     }
+
     @PostMapping(value = "/mypage", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public String updateMember(
             Model model
-            , @SessionAttribute("user") UserDto userDto
+            , @CurrentUser Member member
         , @Valid @ModelAttribute("updateMemberDto") UpdateMemberDto updateMemberDto
         , BindingResult bindingResult
     ) throws Exception {
@@ -128,9 +112,7 @@ public class IndexController {
             String encoded = encoder.encode(updateMemberDto.getPassword());
             updateMemberDto.setPassword(encoded);
         }
-        Optional<Member> optionalMember = memberService.findByEmail(userDto.getEmail());
-        if(optionalMember.isEmpty()) return "redirect:/";
-        Member member = optionalMember.get();
+
         if(updateMemberDto.getPictureFile() != null) {
             String path = fileUtil.saveFile(updateMemberDto.getPictureFile(), member.getId().toString());
             member.updatePicture(path);

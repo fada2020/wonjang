@@ -1,0 +1,151 @@
+/* 기본 Footer 스타일 */
+footer {
+    background-color: #f9f9f9;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Footer 컨테이너 스타일 */
+.footer-container {
+    display: flex;
+    flex-wrap: wrap; /* 줄바꿈을 허용하여 반응형 대응 */
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Left Section 스타일 */
+.left-section {
+    flex: 1;
+    margin-bottom: 20px;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap; /* 반응형을 위해 줄바꿈 */
+    gap: 10px;
+}
+
+.menu li {
+    margin: 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+}
+
+.menu a:hover {
+    text-decoration: underline;
+}
+
+.address {
+    font-size: 12px;
+    color: #666;
+    margin-top: 15px;
+}
+
+.address p {
+    margin: 5px 0;
+}
+
+.copy {
+    margin-top: 10px;
+    color: #999;
+    font-size: 12px;
+}
+
+/* Right Section 스타일 */
+.helpdesk {
+    flex-basis: 300px;
+    margin-bottom: 20px;
+}
+
+.helpdesk strong {
+    display: block;
+    font-size: 16px;
+    color: #0073e6;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.helpdesk .time p,
+.helpdesk .info p,
+.helpdesk a {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.helpdesk a {
+    text-decoration: none;
+    color: #0073e6;
+}
+
+.helpdesk a:hover {
+    text-decoration: underline;
+}
+
+.ismsp {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #666;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column; /* 세로로 정렬 */
+        align-items: flex-start;
+    }
+
+    .left-section,
+    .helpdesk {
+        flex-basis: 100%; /* 전체 너비 사용 */
+        order: -1; /* 순서를 위로 이동 */
+        margin-bottom: 20px;
+    }
+    .left-section{
+        order: 0; /* 순서를 위로 이동 */
+    }
+    .menu {
+        flex-direction: column; /* 메뉴를 세로 정렬 */
+        gap: 5px; /* 간격 줄임 */
+    }
+
+    .menu a {
+        font-size: 12px; /* 글자 크기 줄임 */
+    }
+
+    .helpdesk strong {
+        font-size: 14px;
+    }
+
+    .helpdesk .time p,
+    .helpdesk a {
+        font-size: 12px;
+    }
+
+    .address {
+        font-size: 11px;
+    }
+
+    .copy {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 480px) {
+    footer {
+        padding: 15px;
+    }
+
+    .helpdesk strong {
+        font-size: 13px;
+    }
+}

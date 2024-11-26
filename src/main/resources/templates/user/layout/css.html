@@ -1,0 +1,7 @@
+<th:block th:fragment="css(link)">
+    <link rel="stylesheet" th:href="@{/assets/css/user/style.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/user/footer.css}">
+    <th:block th:if="${link != null}">
+        <th:block th:replace="${link}" />
+    </th:block>
+</th:block>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/layout/layout::layout( ~{::title}, ~{::link}, ~{::body}, ~{::script})}">
+<title>선생님 소개</title>
+<link rel="stylesheet" th:href="@{/assets/css/user/academy.css}">
+<body>
+<div class="container">
+  <!-- 사이드바 -->
+  <aside class="sidebar">
+      <ul>
+        <li><a th:href="@{/academy/introduction}" >학원 소개</a></li>
+        <li><a th:href="@{/academy/teachers}" class="active">선생님 소개</a></li>
+      </ul>
+  </aside>
+
+  <!-- 메인 컨텐츠 -->
+  <main class="content">
+    <section>
+      <h1>선생님 소개</h1>
+      <p>저희 학원은 학생들에게 최고의 교육 환경과 체계적인 학습 프로그램을 제공합니다. 다년간의 경험을 바탕으로 다양한 과목에서 우수한 결과를 자랑하고 있습니다.</p>
+      <p>최신 교육 기법을 적용하며, 학생들의 잠재력을 최대한 발휘할 수 있도록 지원합니다.</p>
+      <p>저희와 함께 학습하며 목표를 이루어보세요!</p>
+    </section>
+  </main>
+</div>
+
+</body>
+</html>

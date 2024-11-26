@@ -1,17 +1,11 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>로그인 페이지</title>
-  <link rel="stylesheet" th:href="@{/assets/css/style.css}">
-</head>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/layout/layout::layout( ~{::title}, ~{::link}, ~{::body}, ~{::script})}">
+<title>로그인 페이지</title>
 <body>
-<th:block th:replace="~{user/layout/header::header('원장의 똥꼬쇼')}" th:remove="tag"></th:block>
 <div class="login-container">
   <div class="login-form">
     <h2>로그인</h2>
-    <form method="POST" th:object="${loginDto}" onsubmit="return checkValues(this);">
+    <form method="POST" th:action="@{/login-proc}" th:object="${loginDto}" onsubmit="return checkValues(this);">
       <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
       <div class="input-group">
         <label th:for="email">아이디</label>
@@ -30,7 +24,8 @@
     </form>
   </div>
 </div>
-<th:block th:replace="~{user/layout/footer::footer}" th:remove="tag"></th:block>
+
+</body>
 <script>
   function checkValues(form){
     const email = form.email.value.trim();
@@ -54,5 +49,4 @@
     return true;  // 유효성 검사를 통과하면 폼을 제출합니다
   }
 </script>
-</body>
 </html>

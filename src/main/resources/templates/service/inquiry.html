@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>문의하기</title>
-    <link rel="stylesheet" th:href="@{/assets/css/style.css}">
-</head>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/layout/layout::layout( ~{::title}, ~{::link}, ~{::body}, ~{::script})}">
+<title>문의하기</title>
 <body>
-<th:block th:replace="~{user/layout/header::header('원장의 똥꼬쇼')}" th:remove="tag"></th:block>
-
 <div class="container">
     <h2 class="page-title">문의하기</h2>
 
@@ -32,12 +24,12 @@
     </form>
 </div>
 
-<th:block th:replace="~{user/layout/footer::footer}" th:remove="tag"></th:block>
+
+</body>
 <script th:inline="javascript">
     const message = /*[[${message}]]*/null;
     if (message) {
         alert('문의가 접수되었습니다!');
     }
 </script>
-</body>
 </html>

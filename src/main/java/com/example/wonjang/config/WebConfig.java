@@ -86,4 +86,5 @@ public class WebConfig implements WebMvcConfigurer {
         resolver.setOneIndexedParameters(true); // 페이지 번호를 1부터 시작
         argumentResolvers.add(resolver);
     }
+
 }

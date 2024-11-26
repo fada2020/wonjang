@@ -1,31 +1,23 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>교육 페이지</title>
-  <link rel="stylesheet" th:href="@{/assets/css/style.css}">
-</head>
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/layout/layout::layout( ~{::title}, ~{::link}, ~{::body}, ~{::script})}">
+<title>인덱스 페이지</title>
 <body>
-<th:block th:replace="~{user/layout/header::header('원장의 똥꼬쇼')}" th:remove="tag"></th:block>
 <div class="container">
   <div class="banner">
     <img th:src="@{/assets/img/park.png}" alt="배너 이미지">
   </div>
   <div class="section">
     <h2>추천 강의</h2>
-    <p>최고의 강사진과 함께하는 다양한 강의를 만나보세요.</p>
-    <!-- 강의 카드나 그리드가 들어갈 수 있습니다 -->
+    <p><a th:href="@{/lecture/info/1}" style="text-decoration: none; color:black;">고민이 있다면 이걸 보세요</a></p>
   </div>
   <div class="section">
     <h2>공지사항</h2>
-    <p>중요한 소식을 확인하세요.</p>
+    <p><a th:href="@{/service/announce}">중요한 소식을 확인하세요.</a></p>
   </div>
   <div class="section">
     <h2>학생 후기</h2>
     <p>학생들이 남긴 후기를 확인하고 직접 참여해보세요.</p>
   </div>
 </div>
-<th:block th:replace="~{user/layout/footer::footer}" th:remove="tag"></th:block>
 </body>
 </html>

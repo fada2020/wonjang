@@ -28,6 +28,14 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
                                   NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
         Authentication authentication = (Authentication) webRequest.getUserPrincipal();
 
-        return loginUtil.getPrincipal(authentication);
+//        return loginUtil.getPrincipal(authentication);
+        Object principal = loginUtil.getPrincipal(authentication);
+        if (principal == null) {
+            System.out.println("Principal is null in Resolver");
+        } else {
+            System.out.println("Resolved Principal in Resolver ");
+        }
+
+        return principal;
     }
 }

@@ -1,22 +1,16 @@
 <th:block th:fragment= "footer()">
-  <style>
-    /* Footer 전체 스타일 */
-
-
-  </style>
   <footer>
     <div class="footer-container">
       <!-- Left Section -->
       <div class="left-section">
         <ul class="menu">
-          <li><a href="https://sso.ebs.co.kr/policy/privacy?fsdc=">개인정보처리방침</a></li>
-          <li><a href="/ebs/pot/poth/retrieveIntroduceEBSi.ebs">원장 소개</a></li>
-          <li><a href="https://home.ebs.co.kr/copyright/main" target="_blank">저작권침해제보</a></li>
-          <li><a href="/ebs/pot/poth/RetrieveHelpBgnGud.ebs">사이트이용안내</a></li>
-          <li><a href="https://sso.ebs.co.kr/policy/termsInfo">이용약관</a></li>
-          <li><a href="/ebs/pot/poth/RetrieveHelpCstmUs.ebs">이용문의</a></li>
-          <li><a href="/ebs/pot/poth/RetrieveHelpCstmFaq.ebs">FAQ</a></li>
-          <li><a href="https://www.togetherschool.go.kr" target="_blank">함께학교</a></li>
+          <li><a th:href="@{/sevice/terms/private}">개인정보처리방침</a></li>
+          <li><a th:href="@{/academy/teachers}">원장 소개</a></li>
+          <li><a th:href="@{/service/use}">사이트이용안내</a></li>
+          <li><a th:href="@{/service/terms}">이용약관</a></li>
+          <li><a th:href="@{/service/inquiry}">이용문의</a></li>
+          <li><a th:href="@{/service/faq}">FAQ</a></li>
+          <li><a th:href="@{/service/crew}" >크루 모집</a></li>
         </ul>
         <div class="address">
           <p>06207 서울특별시 강남구 도곡로63길 16</p>
@@ -36,10 +30,7 @@
           <p>평일 08시 ~ 18시</p>
           <p>(점심시간 12시 ~ 13시, 주말 및 공휴일 휴무)</p>
         </div>
-        <div class="info">
-          <p>1588-1580</p>
-          <a href="javascript:window.open('http://www.0302.co.kr');">원격지원</a>
-        </div>
+
         <a href="mailto:helpwonjang@gmail.com" title="메일쓰기로 이동">helpdesk@원장.닷컴</a>
         <p class="ismsp">
           <span class="blind">ISMSP</span>
@@ -48,34 +39,6 @@
       </div>
     </div>
   </footer>
-  <script>
-    // 햄버거 메뉴 버튼 클릭 시 토글 동작
-    document.getElementById('hamburgerButton').addEventListener('click', function() {
-      // 햄버거 버튼에 active 클래스 토글
-      this.classList.toggle('active');
 
-      // 내비게이션 메뉴에 active 클래스 토글
-      document.getElementById('navMenu').classList.toggle('active');
-    });
-
-    // 닫기 버튼 클릭 시 내비게이션 메뉴 닫기
-    document.getElementById('closeMenuButton').addEventListener('click', function() {
-      // 내비게이션 메뉴와 햄버거 버튼에서 active 클래스 제거
-      document.getElementById('navMenu').classList.remove('active');
-      document.getElementById('hamburgerButton').classList.remove('active');
-    });
-    // 내비게이션 메뉴 외부 클릭 시 메뉴 닫기
-    document.addEventListener('click', function(event) {
-      const navMenu = document.getElementById('navMenu');
-      const hamburgerButton = document.getElementById('hamburgerButton');
-
-      // 내비게이션 메뉴와 햄버거 버튼 외부 클릭 시 메뉴 닫기
-      if (!navMenu.contains(event.target) && !hamburgerButton.contains(event.target)) {
-        navMenu.classList.remove('active');
-        hamburgerButton.classList.remove('active');
-      }
-    });
-
-  </script>
 
 </th:block>
