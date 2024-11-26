@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/layout/layout::layout( ~{::title}, ~{::link}, ~{::body}, ~{::script})}">
+<title>공지사항</title>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>공지사항 목록</h2>
+        <a href="/admin/announce" class="btn btn-primary">공지사항 작성</a>
+      </div>
+
+      <div class="list-group">
+        <!-- 공지사항 목록 출력 -->
+        <div th:each="announce : ${announcePage}" class="list-group-item list-group-item-action">
+          <h5 class="mb-1" th:text="${announce.title}"></h5>
+          <p class="mb-1" th:text="${announce.content}"></p>
+          <small th:text="${#temporals.format(announce.crtDtim, 'yyyy-MM-dd HH:mm')}"></small>
+          <a th:href="@{/admin/announce/{id}(id=${announce.id})}" class="btn btn-primary btn-sm float-end">상세보기</a>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+</body>
+</html>
