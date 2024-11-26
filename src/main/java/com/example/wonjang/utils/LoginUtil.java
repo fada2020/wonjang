@@ -13,14 +13,11 @@ public class LoginUtil {
 
     public Object getPrincipal(Authentication authentication){
         if (authentication == null) {
-            System.out.println(" = 없다 " );
             return null;
         }
 
         Object principal = authentication.getPrincipal();
         if (principal instanceof Member) {
-            System.out.println(" = 있다 " );
-
             return principal;
         }
 

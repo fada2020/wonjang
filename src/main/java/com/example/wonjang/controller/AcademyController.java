@@ -17,11 +17,11 @@ public class AcademyController {
     @GetMapping("/introduction")
     public String introduction(
     ){
-        return "academy/introduction";
+        return "user/academy/introduction";
     }
     @GetMapping( "/teachers")
     public String teachers(
     ){
-        return "academy/teachers";
+        return "user/academy/teachers";
     }
 }

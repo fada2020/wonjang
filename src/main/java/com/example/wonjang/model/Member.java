@@ -2,6 +2,7 @@ package com.example.wonjang.model;
 
 
 import com.example.wonjang.dto.SignUpDto;
+import com.example.wonjang.dto.UpdateAdminDto;
 import com.example.wonjang.dto.UpdateMemberDto;
 import com.example.wonjang.dto.UserDto;
 import io.micrometer.common.util.StringUtils;
@@ -138,6 +139,12 @@ public class Member extends BaseTimeEntity implements UserDetails {  // UserDeta
         this.picture = updateValue(this.picture, updateMemberDto.getPicture());
         this.password = updateValue(this.password, updateMemberDto.getPassword());
         this.mobile = updateValue(this.password, updateMemberDto.getMobile());
+    }
+    public void updateMember(@Valid UpdateAdminDto updateAdminDto) {
+        this.name = updateValue(this.name, updateAdminDto.getName());
+        this.picture = updateValue(this.picture, updateAdminDto.getPicture());
+        this.password = updateValue(this.password, updateAdminDto.getPassword());
+        this.mobile = updateValue(this.password, updateAdminDto.getMobile());
     }
 
     private String updateValue(String currentValue, String newValue) {

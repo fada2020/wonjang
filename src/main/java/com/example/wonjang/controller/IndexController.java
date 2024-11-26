@@ -106,6 +106,7 @@ public class IndexController {
     ) throws Exception {
         if (bindingResult.hasErrors()) {
             model.addAttribute("updateMemberDto", updateMemberDto);
+            model.addAttribute("member", member.toSignUpDto());
             return "user/mypage";
         }
         if (StringUtils.isNotEmpty(updateMemberDto.getPassword())) {
