@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /private/
+Allow: /public/
+Sitemap: https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/sitemap.xml

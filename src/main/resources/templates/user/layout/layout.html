@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, link, content, script)"
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, link, content, script, meta)"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="박원장의 MATH ITSELF" />
+    <meta property="og:description" content="박원장의 MATH ITSELF 예약 및 문의를 홈페이지에서 받고 있습니다." />
+    <meta property="og:image" content="https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/storage/img/park.png" />
+    <meta property="og:url" content="https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="박원장의 MATH ITSELF" />
+    <meta name="twitter:description"  content="박원장의 MATH ITSELF 예약 및 문의를 홈페이지에서 받고 있습니다." />
+    <meta name="twitter:image" content="https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/storage/img/park.png" />
+    <meta name="description" content="MATH ITSELF 인덱스 페이지의 소개와 강의, 공지사항을 확인하세요." />
+    <meta name="keywords" content="MATH ITSELF, 강의, 공지사항, 학생 후기, 인덱스 페이지" />
+    <th:block th:if="${meta != null}">
+        <th:block th:replace="${meta}" />
+    </th:block>
+    <meta name="robots" content="index, follow">
     <th:block th:replace="${title}"> </th:block>
     <!-- google -> 자바스크립트 yml 변수 -> Thymeleaf 에서 스프링 환경변수 사용하기 -> java.ihoney.pe.kr/472 -->
     <th:block th:replace="~{user/layout/css :: css(~{::link})}"></th:block>
