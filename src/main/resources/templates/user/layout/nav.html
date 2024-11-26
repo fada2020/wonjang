@@ -14,11 +14,11 @@
   </header>
   <nav  id="navMenu">
     <button id="closeMenuButton" class="close-button">X</button> <!-- 닫기 버튼 -->
-    <a th:href="@{/templates/user/academy/introduction}">소개</a>
+    <a th:href="@{/academy/introduction}">소개</a>
     <a th:href="@{/lecture/list}">강의</a>
     <a th:href="@{/data}">자료실</a>
-    <a th:href="@{/templates/user/service/announce}">공지사항</a>
-    <a th:href="@{/templates/user/service/inquiry}">문의하기</a>
+    <a th:href="@{/service/announce}">공지사항</a>
+    <a th:href="@{/service/inquiry}">문의하기</a>
     <!-- 로그인/마이페이지 버튼을 네비게이션 안으로 넣음 (작은 화면에서만 보이게) -->
     <th:block sec:authorize="isAnonymous()">
       <a th:href="@{/login}" id="loginButton">로그인</a>
