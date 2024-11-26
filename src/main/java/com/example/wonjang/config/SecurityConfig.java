@@ -9,6 +9,7 @@ import com.example.wonjang.provider.CustomAuthenticationProvider;
 import com.example.wonjang.service.MemberService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -69,6 +70,7 @@ public class SecurityConfig {
                                 //.requestMatchers(PathRequest.toH2Console()).permitAll()
                                 //.requestMatchers("/", "/member/*").hasRole(Role.USER.name())
                                 .requestMatchers("/admin", "/admin/**").hasRole(Role.ADMIN.name())
+                                .requestMatchers(HttpMethod.POST, "/submit-feedback").hasAnyRole(Role.USER.name(), Role.ADMIN.name())
                                 .requestMatchers(new AntPathRequestMatcher("/lecture/{id:\\d+}")).hasAnyRole(Role.USER.name(), Role.ADMIN.name())
                                 .anyRequest().permitAll()
 
