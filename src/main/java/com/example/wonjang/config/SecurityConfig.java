@@ -18,6 +18,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -68,6 +69,7 @@ public class SecurityConfig {
                                 //.requestMatchers(PathRequest.toH2Console()).permitAll()
                                 //.requestMatchers("/", "/member/*").hasRole(Role.USER.name())
                                 .requestMatchers("/admin", "/admin/**").hasRole(Role.ADMIN.name())
+                                .requestMatchers(new AntPathRequestMatcher("/lecture/{id:\\d+}")).hasAnyRole(Role.USER.name(), Role.ADMIN.name())
                                 .anyRequest().permitAll()
 
                 )
