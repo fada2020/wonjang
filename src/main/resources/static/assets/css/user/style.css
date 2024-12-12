@@ -93,7 +93,11 @@ nav a:hover {
     border-radius: 15px;
     transition: all 0.3s ease;
 }
-
+.banner.slide img {
+    max-width: 500px;
+    display: block;
+    margin:auto;
+}
 .banner img:hover {
     transform: scale(1.05);
 }

@@ -3,11 +3,23 @@
 <title>MATH ITSELF 인덱스 페이지</title>
 <meta name="description" content="MATH ITSELF 인덱스 페이지의 소개와 강의, 공지사항을 확인하세요." />
 <meta name="keywords" content="MATH ITSELF, 강의, 공지사항, 학생 후기, 인덱스 페이지" />
+
 <body>
 <div class="container">
-  <div class="banner">
-    <img th:src="@{/assets/img/park.png}" alt="배너 이미지">
+  <div class="slider">
+    <div class="slide banner">
+      <img th:src="@{/assets/img/main1.png}" alt="배너 이미지">
+    </div>
+    <div class="slide banner">
+      <img th:src="@{/assets/img/main2.png}" alt="배너 이미지">
+    </div>
+    <div class="slide banner">
+      <img th:src="@{/assets/img/park.png}" alt="배너 이미지">
+    </div>
   </div>
+<!--  <div class="banner">-->
+<!--    <img th:src="@{/assets/img/park.png}" alt="배너 이미지">-->
+<!--  </div>-->
   <div class="section">
     <h2>추천 강의</h2>
     <p><a th:href="@{/lecture/info/1}" style="text-decoration: none; color:black;">고민이 있다면 이걸 보세요</a></p>
@@ -39,4 +51,30 @@
     }
   }
 </script>
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.slide');
+  const slideCount = slides.length;
+
+  function showSlide(n) {
+    slides.forEach(slide => slide.style.display = 'none');
+    slides[n].style.display = 'block';
+  }
+
+  function nextSlide() {
+    currentSlide = (currentSlide + 1) % slideCount;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+    showSlide(currentSlide);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    showSlide(currentSlide);
+    setInterval(nextSlide, 3000); // 3초마다 자동 슬라이드
+  });
+</script>
+
 </html>
