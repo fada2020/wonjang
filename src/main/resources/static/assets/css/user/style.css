@@ -101,11 +101,12 @@ nav a:hover {
 .banner img:hover {
     transform: scale(1.05);
 }
-.lecture-image{
+.lecture-image, .lecture-list-container > img{
     margin: auto;
     display: block;
     max-width: 500px;
 }
+
 .content > section > img {
     margin: auto;
     display: block;
