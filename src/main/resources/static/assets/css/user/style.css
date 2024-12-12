@@ -101,7 +101,16 @@ nav a:hover {
 .banner img:hover {
     transform: scale(1.05);
 }
-
+.lecture-image{
+    margin: auto;
+    display: block;
+    max-width: 500px;
+}
+.content > section > img {
+    margin: auto;
+    display: block;
+    max-width: 500px;
+}
 /* 섹션 스타일 */
 .section {
     background-color: #ffffff;
