@@ -3,6 +3,8 @@ package com.example.wonjang.service;
 import com.example.wonjang.model.Announce;
 import com.example.wonjang.repository.AnnounceRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,8 +27,12 @@ public class AnnounceService {
     public Optional<Announce> findById(Integer id) {
         return announceRepository.findById(id);
     }
-
+    //@CacheEvict(value = "pinCount", allEntries = true)
     public void save(Announce announce) {
         announceRepository.save(announce);
+    }
+    //@Cacheable("pinCount")
+    public int countByPin(boolean pin) {
+        return announceRepository.countByPin(pin);
     }
 }

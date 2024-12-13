@@ -14,7 +14,8 @@
             <div class="col-12 col-md-8">
                 <table class="table table-striped">
                     <tbody>
-                    <tr th:each="announce : ${announcePage}" th:onclick="|window.location.href='/service/announce/${announce.id}'|">
+                    <tr th:each="announce, index : ${announcePage}" th:onclick="|window.location.href='/service/announce/${announce.id}'|">
+                        <td class="col-2" th:text="${announce.pin ? '📌' : (index.count + (announcePage.size * announcePage.number)) }"></td>
                         <td class="col-8" th:text="${announce.title}" ></td>
                         <td class="col-2" th:text="${#temporals.format(announce.crtDtim, 'yyyy-MM-dd HH:mm')}"></td>
                     </tr>

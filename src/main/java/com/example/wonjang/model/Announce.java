@@ -16,11 +16,14 @@ public class Announce extends BaseTimeEntity {
     private String title;
     @Column(columnDefinition = "text")
     private String content;
+    @Builder.Default
+    private Boolean pin = Boolean.FALSE;
     @Builder
-    public Announce(Integer id, String title, String content) {
+    public Announce(Integer id, String title, String content, Boolean pin) {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.pin = pin;
     }
 
     public Announce() {
@@ -35,6 +38,7 @@ public class Announce extends BaseTimeEntity {
                 .id(this.id)
                 .title(this.title)
                 .content(this.content)
+                .pin(this.pin)
                 .build();
     }
 }

@@ -19,7 +19,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequestMapping("/service")
 @Controller
@@ -84,7 +87,8 @@ public class ServiceController {
     @GetMapping("/announce")
     public String announceIndex(
             Model model
-           , @PageableDefault(size = 10) @SortDefault.SortDefaults(@SortDefault(sort="id", direction = Sort.Direction.DESC)) Pageable pageable){
+           , @PageableDefault(size = 10) @SortDefault.SortDefaults({@SortDefault(sort="pin", direction = Sort.Direction.DESC)
+           ,@SortDefault(sort="id", direction = Sort.Direction.DESC)}) Pageable pageable){
         Page<Announce> announcePage = announceService.findAll(pageable);
         model.addAttribute("announcePage", announcePage);
         return "user/service/announce";

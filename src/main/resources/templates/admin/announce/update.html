@@ -2,6 +2,11 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/layout/layout::layout( ~{::title}, ~{::link}, ~{::body}, ~{::script})}">
 <title>공지사항</title>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
+<style>
+  .form-check.form-switch label {
+    order: -1;  /* label을 input보다 먼저 오게 설정 */
+  }
+</style>
 <body>
 <div class="container-fluid">
   <div class="row">
@@ -16,7 +21,14 @@
           <label th:for="title" class="form-label">제목</label>
           <input type="text" class="form-control" th:field="*{title}" required>
         </div>
-
+        <div class="mb-3">
+          <label th:for="pin" class="form-label">고정</label>
+        </div>
+        <div class="mb-3">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" th:field="*{pin}">
+          </div>
+        </div>
         <div class="mb-3">
           <label th:for="content" class="form-label">내용</label>
           <div id="summernote"></div>
@@ -24,7 +36,9 @@
         </div>
         <input type="hidden" th:field="*{id}">
         <input type="hidden" th:field="*{content}">
-        <button type="submit" class="btn btn-primary">작성 완료</button>
+        <div class="row justify-content-center">
+          <button type="submit" class="col-2 btn btn-primary">작성 완료</button>
+        </div>
       </form>
 
     </main>
