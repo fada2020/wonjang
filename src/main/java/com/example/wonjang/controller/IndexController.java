@@ -1,54 +1,50 @@
 package com.example.wonjang.controller;
 
 import com.example.wonjang.annotation.CurrentUser;
+import com.example.wonjang.dto.AnnounceDto;
 import com.example.wonjang.dto.LoginDto;
 import com.example.wonjang.dto.SignUpDto;
 import com.example.wonjang.dto.UpdateMemberDto;
-import com.example.wonjang.dto.UserDto;
+import com.example.wonjang.model.Announce;
 import com.example.wonjang.model.Member;
+import com.example.wonjang.service.AnnounceService;
 import com.example.wonjang.service.MemberService;
 import com.example.wonjang.utils.FileUtil;
 import io.micrometer.common.util.StringUtils;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.DefaultRedirectStrategy;
-import org.springframework.security.web.RedirectStrategy;
-import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
-import org.springframework.security.web.savedrequest.RequestCache;
-import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Controller
 public class IndexController {
     private final MemberService memberService;
+    private final AnnounceService announceService;
     private final FileUtil fileUtil;
 
     private final BCryptPasswordEncoder encoder;
-    public IndexController(MemberService memberService, FileUtil fileUtil) {
+    public IndexController(MemberService memberService, AnnounceService announceService, FileUtil fileUtil) {
         this.memberService = memberService;
+        this.announceService = announceService;
         this.fileUtil = fileUtil;
         this.encoder = new BCryptPasswordEncoder();
     }
 
     @GetMapping("/")
-    public String index(){
+    public String index(Model model){
+        List<Announce>announceList = announceService.findByPin(true);
+        List<AnnounceDto> announceDtos = announceList.stream().map(Announce::toDto).limit(5).toList();
+        model.addAttribute("announceDtos", announceDtos);
         return "user/index";
     }
     @GetMapping("/login")

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -34,5 +35,9 @@ public class AnnounceService {
     //@Cacheable("pinCount")
     public int countByPin(boolean pin) {
         return announceRepository.countByPin(pin);
+    }
+
+    public List<Announce> findByPin(boolean pin) {
+        return announceRepository.findByPin(pin);
     }
 }
