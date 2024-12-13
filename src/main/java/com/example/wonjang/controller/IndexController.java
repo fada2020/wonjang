@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Slf4j
@@ -43,7 +44,7 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model){
         List<Announce>announceList = announceService.findByPin(true);
-        List<AnnounceDto> announceDtos = announceList.stream().map(Announce::toDto).limit(5).toList();
+        List<AnnounceDto> announceDtos = announceList.stream().map(Announce::toDto).sorted(Comparator.comparing(AnnounceDto::getId).reversed()).limit(5).toList();
         model.addAttribute("announceDtos", announceDtos);
         return "user/index";
     }
