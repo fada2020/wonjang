@@ -1,6 +1,7 @@
 package com.example.wonjang.controller;
 
 import com.example.wonjang.annotation.CurrentUser;
+import com.example.wonjang.dto.AnnounceDto;
 import com.example.wonjang.dto.UpdateAdminDto;
 import com.example.wonjang.model.Announce;
 import com.example.wonjang.model.Member;
@@ -102,9 +103,9 @@ public class AdminController {
     ){
         if (id != null) {
             Optional<Announce> announceOptional = announceService.findById(id);
-            announceOptional.ifPresent(announce -> model.addAttribute("announce", announce));
+            announceOptional.ifPresent(announce -> model.addAttribute("announceDto", announce.toDto()));
         } else {
-            model.addAttribute("announce", new Announce());
+            model.addAttribute("announceDto", new AnnounceDto());
         }
         return "admin/announce/update";
 
@@ -114,17 +115,17 @@ public class AdminController {
             Model model
             , @PathVariable(value="id", required = false) Integer id
             , @CurrentUser Member member
-            , @ModelAttribute("announce") Announce newAnnounce
+            , @ModelAttribute("announceDto") AnnounceDto announceDto
     ){
-        System.out.println("newAnnounce = " + newAnnounce);
+        System.out.println("announceDto = " + announceDto);
         if (id != null) {
             Optional<Announce> announceOptional = announceService.findById(id);
             announceOptional.ifPresent(announce ->{
-                announce.update(newAnnounce);
+                announce.update(announceDto.toEntity());
                 announceService.save(announce);
             });
         } else {
-            announceService.save(newAnnounce);
+            announceService.save(announceDto.toEntity());
         }
         return "admin/announce/update";
 

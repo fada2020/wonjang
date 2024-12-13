@@ -61,19 +61,14 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
         http.cors(Customizer.withDefaults())
-                //.csrf(AbstractHttpConfigurer::disable)
                 .csrf(t->t.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()))
-                //.headers((headerConfig) -> headerConfig.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
                 .headers((headerConfig) -> headerConfig.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .authorizeHttpRequests((authorizeRequests) ->
                         authorizeRequests
-                                //.requestMatchers(PathRequest.toH2Console()).permitAll()
-                                //.requestMatchers("/", "/member/*").hasRole(Role.USER.name())
                                 .requestMatchers("/admin", "/admin/**").hasRole(Role.ADMIN.name())
                                 .requestMatchers(HttpMethod.POST, "/submit-feedback").hasAnyRole(Role.USER.name(), Role.ADMIN.name())
                                 .requestMatchers(new AntPathRequestMatcher("/lecture/{id:\\d+}")).hasAnyRole(Role.USER.name(), Role.ADMIN.name())
                                 .anyRequest().permitAll()
-
                 )
                 .formLogin((formLogin) ->
                         formLogin

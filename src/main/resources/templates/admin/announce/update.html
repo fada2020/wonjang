@@ -10,7 +10,7 @@
         <h2>공지사항 작성</h2>
       </div>
 
-      <form th:object="${announce}" method="post" onsubmit="return checkValues(this);">
+      <form th:object="${announceDto}" method="post" onsubmit="return checkValues(this);">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div class="mb-3">
           <label th:for="title" class="form-label">제목</label>
@@ -22,6 +22,7 @@
           <div id="summernote"></div>
 
         </div>
+        <input type="hidden" th:field="*{id}">
         <input type="hidden" th:field="*{content}">
         <button type="submit" class="btn btn-primary">작성 완료</button>
       </form>
@@ -31,17 +32,12 @@
 </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
+
 <script th:inline="javascript">
-  const announce = /*[[${announce}]]*/null;
+  const announceDto = /*[[${announceDto}]]*/null;
 </script>
 <script>
-  $(function(){
-    let content = announce.content;
-    if(content) {
-      $('#summernote').summernote('code', content);
-    }
 
-  });
   $('#summernote').summernote({
     // 에디터 크기 설정
     height: 800,
@@ -74,47 +70,65 @@
     callbacks : {
       onImageUpload : function(files, editor, welEditable) {
         // 다중 이미지 처리를 위해 for문을 사용했습니다.
-        for (var i = 0; i < files.length; i++) {
+        for (let i = 0; i < files.length; i++) {
+          console.log(files[i]);
           imageUploader(files[i], this);
         }
       }
     }
 
   });
+
+  $(function(){
+    let content = announceDto.content;
+    if(content) {
+      $('#summernote').summernote('code', content);
+    }
+  });
+
   function imageUploader(file, el) {
-    var formData = new FormData();
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    let formData = new FormData();
     formData.append('file', file);
 
-    $.ajax({
-      data : formData,
-      type : "POST",
-      // url은 자신의 이미지 업로드 처리 컨트롤러 경로로 설정해주세요.
-      url : '/api/v1/image-upload',
-      contentType : false,
-      processData : false,
-      enctype : 'multipart/form-data',
-      beforeSend: function(xhr) {
-        // CSRF 토큰을 헤더에 추가
-        var csrfToken = $('meta[name="csrf-token"]').attr('content');
-        xhr.setRequestHeader('X-XSRF-TOKEN', csrfToken);
-      },
-      success : function(data) {
-        // $(el).summernote('insertImage', "${pageContext.request.contextPath}/assets/images/upload/"+data, function($image) {
-        //   $image.css('width', "100%");
-        // });
+    // Fetch를 사용하여 POST 요청
+    fetch('/api/v1/image-upload', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'X-XSRF-TOKEN': csrfToken // CSRF 토큰을 헤더에 추가합니다.
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          // 응답이 실패했을 때
+          return response.text().then(errorText => {
+            throw new Error(`HTTP 오류: ${response.status} - ${errorText}`);
+          });
+        }
+        return response.text();  // 서버의 응답을 text 형식으로 파싱
+      })
+      .then(data => {
+        // 서버에서 받은 데이터 처리
         $(el).summernote('insertImage', data, function($image) {
+          console.log($image);
           $image.css('width', "100%");
         });
-        // 값이 잘 넘어오는지 콘솔 확인 해보셔도됩니다.
         console.log(data);
-      }
-    });
+      })
+      .catch(error => {
+        // 에러 처리
+        console.log("이미지 업로드 중 오류가 발생했습니다.");
+        console.log("에러 메시지: " + error.message);
+        alert("이미지 업로드 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      });
   }
+
   function checkValues(form){
     form.content.value = $('#summernote').summernote('code');
     form.content.textContent = $('#summernote').summernote('code');
     return true;
-
   }
+
 </script>
 </html>
