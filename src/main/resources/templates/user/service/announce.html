@@ -3,6 +3,66 @@
 
 <title>공지사항</title>
 <body>
-공지사항
+<link th:href="@{/assets/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+
+<div class="container mt-4">
+    <h1 class="mb-4 text-center">공지사항</h1>
+
+    <div th:if="${announcePage.hasContent()}">
+        <!-- 테이블을 중앙에 배치 -->
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr th:each="announce : ${announcePage}" th:onclick="|window.location.href='/service/announce/${announce.id}'|">
+                        <td class="col-8" th:text="${announce.title}" ></td>
+                        <td class="col-2" th:text="${#temporals.format(announce.crtDtim, 'yyyy-MM-dd HH:mm')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 페이징 버튼을 중앙에 배치 -->
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item" th:classappend="${announcePage.first ? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{/service/announce?page=1}" aria-label="First">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item" th:classappend="${announcePage.hasPrevious() ? '' : 'disabled'}">
+                        <a class="page-link" th:href="@{/service/announce?page=${announcePage.number - 1}}" aria-label="Previous">
+                            <span aria-hidden="true">&lsaquo;</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item" th:each="i : ${#numbers.sequence(1, announcePage.totalPages)}">
+                        <a class="page-link" th:href="@{/service/announce?page={page}(page=${i})}" th:text="${i}"></a>
+                    </li>
+
+                    <li class="page-item" th:classappend="${announcePage.hasNext() ? '' : 'disabled'}">
+                        <a class="page-link" th:href="@{/service/announce?page=${announcePage.number + 1}}" aria-label="Next">
+                            <span aria-hidden="true">&rsaquo;</span>
+                        </a>
+                    </li>
+
+                    <li class="page-item" th:classappend="${announcePage.last ? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{/service/announce?page=${announcePage.totalPages}}" aria-label="Last">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 공지사항이 없을 경우 메시지 -->
+    <div th:if="${!announcePage.hasContent()}">
+        <p>현재 공지사항이 없습니다.</p>
+    </div>
+</div>
 </body>
 </html>
