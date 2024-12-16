@@ -13,7 +13,6 @@ header {
     background-color: #0056b3;
     color: #ffffff;
     padding: 20px;
-    text-align: center;
     font-size: 28px;
     font-weight: bold;
     display: flex;
@@ -22,13 +21,52 @@ header {
     border-bottom: 4px solid #004494;
 }
 
+/* 제목과 버튼을 포함한 영역 */
 .header-title {
-    flex: 1;
-    text-align: center;
-    font-size: 28px;
-    letter-spacing: 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
 }
 
+/* 텍스트 영역 */
+.header-title > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: auto;
+}
+
+/* 전화 버튼 */
+.header-title a {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.header-title a img {
+    width: 30px;
+    height: 30px;
+}
+/* 문자 보내기 버튼 */
+.header-title a:nth-child(2) {
+    margin-right: 10px; /* 문자 보내기 버튼과 전화 버튼 간의 간격을 설정 */
+}
+/* 유저 버튼 */
+.header-title a:nth-child(3) {
+    margin-right: 10px; /* 문자 보내기 버튼과 전화 버튼 간의 간격을 설정 */
+}
+/* 햄버거 메뉴 */
+.hamburger {
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+/* 헤더 버튼들 */
 .header-buttons {
     display: flex;
     gap: 12px;
@@ -330,7 +368,7 @@ textarea::placeholder {
         display: block;
     }
     .header-buttons {
-        display: none; /* 큰 화면에서 버튼들을 숨김 */
+        display: none !important; /* 큰 화면에서 버튼들을 숨김 */
     }
 
     .hamburger {

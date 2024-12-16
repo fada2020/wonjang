@@ -19,6 +19,11 @@ public class AcademyController {
     ){
         return "user/academy/introduction";
     }
+    @GetMapping("/curriculum")
+    public String curriculum(
+    ){
+        return "user/academy/curriculum";
+    }
     @GetMapping( "/teachers")
     public String teachers(
     ){

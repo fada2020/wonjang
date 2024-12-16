@@ -1,32 +1,72 @@
-<th:block th:fragment= "nav">
-  <header>
-    <div class="header-title" th:onclick="|window.location.href='/'|" style="cursor:pointer;">MATH ITSELF</div>
-    <button class="hamburger" id="hamburgerButton">&#9776;</button>
-    <div class="header-buttons">
-      <th:block sec:authorize="isAnonymous()">
-        <a th:href="@{/login}" id="loginButtonDesktop">로그인</a>
-      </th:block>
-      <th:block sec:authorize="isAuthenticated()">
-        <a th:href="@{/mypage}" id="myPageButtonDesktop">마이페이지</a>
-        <a th:href="@{/logout}" id="logoutButtonDesktop">로그아웃</a>
-      </th:block>
+<th:block th:fragment="nav">
+  <header class="bg-primary text-white py-3">
+    <div class="container d-flex justify-content-between align-items-center">
+      <!-- 텍스트 영역 -->
+      <div th:onclick="|window.location.href='/'|">
+        <div>ITSELF</div>
+        <div style="color:red; font-size: 12px;">그 본연의 것</div>
+      </div>
+
+      <!-- 전화버튼 -->
+      <a href="tel:010-2739-9679" class="text-white">
+        <img th:src="@{/storage/phone.svg}" alt="전화" style="width: 30px; height: 30px;"/>
+      </a>
+
+      <!-- 문자보내기 버튼 -->
+      <a href="sms:010-2739-9679" class="text-white">
+        <img th:src="@{/storage/message.svg}" alt="문자" style="width: 30px; height: 30px;"/>
+      </a>
+
+      <!-- 내 정보 버튼 -->
+      <a th:href="@{/mypage}" class="text-white">
+        <img th:src="@{/storage/user.svg}" alt="내 정보" style="width: 30px; height: 30px;"/>
+      </a>
+
+      <!-- 햄버거 메뉴 -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        &#9776;
+      </button>
     </div>
   </header>
-  <nav  id="navMenu">
-    <button id="closeMenuButton" class="close-button">X</button> <!-- 닫기 버튼 -->
-    <a th:href="@{/academy/introduction}">소개</a>
-    <a th:href="@{/lecture/list}">강의</a>
-    <a th:href="@{/data}">자료실</a>
-    <a th:href="@{/service/announce}">공지사항</a>
-    <a th:href="@{/service/inquiry}">문의하기</a>
-    <!-- 로그인/마이페이지 버튼을 네비게이션 안으로 넣음 (작은 화면에서만 보이게) -->
-    <th:block sec:authorize="isAnonymous()">
-      <a th:href="@{/login}" id="loginButton">로그인</a>
-    </th:block>
-    <th:block sec:authorize="isAuthenticated()">
-      <a th:href="@{/mypage}" id="myPageButton">마이페이지</a>
-      <a th:href="@{/logout}" id="logoutButton">로그아웃</a>
-    </th:block>
-  </nav>
 
+  <!-- 네비게이션 바 -->
+  <nav class="collapse navbar-collapse" id="navMenu">
+    <div class="container">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/academy/introduction}">소개</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/academy/curriculum}">커리큘럼</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/lecture/list}">강의</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/data}">자료실</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/service/announce}">공지사항</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/service/inquiry}">문의하기</a>
+        </li>
+
+        <!-- 로그인/마이페이지 버튼을 네비게이션 안으로 넣음 -->
+        <th:block sec:authorize="isAnonymous()">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/login}" id="loginButton">로그인</a>
+          </li>
+        </th:block>
+        <th:block sec:authorize="isAuthenticated()">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/mypage}" id="myPageButton">마이페이지</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/logout}" id="logoutButton">로그아웃</a>
+          </li>
+        </th:block>
+      </ul>
+    </div>
+  </nav>
 </th:block>

@@ -6,37 +6,76 @@
 
 <body>
 <div class="container">
-  <div class="slider">
-    <div class="slide banner">
-      <img th:src="@{/assets/img/main1.png}" alt="배너 이미지">
+    <!-- 카드 1 -->
+    <div class="row">
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="http://localhost:8030/storage/background1.jpg" alt="Card Image" class="card-img-top">
+                </div>
+                <div class="card-body text-center">
+                    <p>수학자를 꿈꾸었던 청년이</p>
+                    <p>통찰하는 아름다운 수학</p>
+                    <p>진리를 지도합니다.</p>
+                </div>
+            </div>
+        </div>
+        <!-- 교육 철학 -->
+        <div class="col-12" style="    background-color: black;
+    color: white;">
+            <div class="col-12">
+                교육 철학
+            </div>
+        </div>
+        <!-- 카드 2 -->
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="http://localhost:8030/storage/background2.jpg" alt="Card Image" class="card-img-top">
+                </div>
+                <div class="card-body text-center">
+                    <h3>개념의 역사</h3>
+                    <p>암기식 유형학습이 아닌</p>
+                    <p>개념의 탄생과 발전을</p>
+                    <p>저달할 수 있는 유일한 강사</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 카드 3 -->
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="http://localhost:8030/storage/background3.jpg" alt="Card Image" class="card-img-top">
+                </div>
+                <div class="card-body text-center">
+                    <h3>명확한 교육 목표</h3>
+                    <p>개념의 철학을 기반으로</p>
+                    <p>고등기초 교육과 수능이 요구하는</p>
+                    <p>능력과 생각법을 훈련시킵니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 카드 4 -->
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-image">
+                    <img src="http://localhost:8030/storage/background4.jpg" alt="Card Image" class="card-img-top">
+                </div>
+                <div class="card-body text-center">
+                    <h3>4인 체제</h3>
+                    <p>맞은 문제를 더 철저하게</p>
+                    <p>확인해야 사고교정이 이뤄집니다.</p>
+                    <p>품이 많이 드는 작업이기에</p>
+                    <p>성향과 실력이 비슷한</p>
+                    <p>4인 1반을 고집합니다.</p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="slide banner">
-      <img th:src="@{/assets/img/main2.png}" alt="배너 이미지">
-    </div>
-<!--    <div class="slide banner">-->
-<!--      <img th:src="@{/assets/img/park.png}" alt="배너 이미지">-->
-<!--    </div>-->
-  </div>
-<!--  <div class="banner">-->
-<!--    <img th:src="@{/assets/img/park.png}" alt="배너 이미지">-->
-<!--  </div>-->
-  <div class="section">
-    <h2>추천 강의</h2>
-    <p><a th:href="@{/lecture/info/1}" style="text-decoration: none; color:black;">고민이 있다면 이걸 보세요</a></p>
-  </div>
-  <div class="section">
-    <h2>공지사항</h2>
-    <th:block th:if="${announceDtos != null}">
-      <p th:each="dto : ${announceDtos}" ><a th:href="@{/service/announce/{id}(id=${dto.id})}" th:text="${dto.title}"></a></p>
-    </th:block>
-    <th:block th:unless="${announceDtos != null}">
-      <p><a th:href="@{/service/announce}">중요한 소식을 확인하세요.</a></p>
-    </th:block>
-  </div>
-  <div class="section">
-    <h2>학생 후기</h2>
-    <p>학생들이 남긴 후기를 확인하고 직접 참여해보세요.</p>
-  </div>
+
+
 </div>
 </body>
 <script type="application/ld+json">

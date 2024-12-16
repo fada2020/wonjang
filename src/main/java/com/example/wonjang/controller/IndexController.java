@@ -43,9 +43,9 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model){
-        List<Announce>announceList = announceService.findByPin(true);
-        List<AnnounceDto> announceDtos = announceList.stream().map(Announce::toDto).sorted(Comparator.comparing(AnnounceDto::getId).reversed()).limit(5).toList();
-        model.addAttribute("announceDtos", announceDtos);
+//        List<Announce>announceList = announceService.findByPin(true);
+//        List<AnnounceDto> announceDtos = announceList.stream().map(Announce::toDto).sorted(Comparator.comparing(AnnounceDto::getId).reversed()).limit(5).toList();
+//        model.addAttribute("announceDtos", announceDtos);
         return "user/index";
     }
     @GetMapping("/login")

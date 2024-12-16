@@ -3,27 +3,37 @@
 <title>MATH ITSELF 로그인 페이지</title>
 <meta name="description" content="MATH ITSELF 인덱스 페이지의 소개와 강의, 공지사항을 확인하세요." />
 <meta name="keywords" content="MATH ITSELF, 강의, 공지사항, 학생 후기, 인덱스 페이지" />
-<body>
-<div class="login-container">
-  <div class="login-form">
-    <h2>로그인</h2>
-    <form method="POST" th:action="@{/login-proc}" th:object="${loginDto}" onsubmit="return checkValues(this);">
-      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-      <div class="input-group">
-        <label th:for="email">아이디</label>
-        <input type="text" th:field="*{email}" placeholder="아이디를 입력하세요" required>
-        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-      </div>
-      <div class="input-group">
-        <label th:for="password">비밀번호</label>
-        <input type="password" th:field="*{password}" placeholder="비밀번호를 입력하세요" required>
-        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-      </div>
-      <button type="submit" class="submit-button">로그인</button>
-      <div class="signup-link">
-        <a href="/signup">회원가입</a>
-      </div>
-    </form>
+<body class="bg-light">
+<div class="container d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow-lg" style="width: 100%; max-width: 400px;">
+    <div class="card-body">
+      <h2 class="text-center mb-4">로그인</h2>
+      <form method="POST" th:action="@{/login-proc}" th:object="${loginDto}" onsubmit="return checkValues(this);">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+        <!-- 이메일 입력 필드 -->
+        <div class="form-group">
+          <label for="email">아이디</label>
+          <input type="text" id="email" th:field="*{email}" class="form-control" placeholder="아이디를 입력하세요" required>
+          <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
+        </div>
+
+        <!-- 비밀번호 입력 필드 -->
+        <div class="form-group">
+          <label for="password">비밀번호</label>
+          <input type="password" id="password" th:field="*{password}" class="form-control" placeholder="비밀번호를 입력하세요" required>
+          <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
+        </div>
+
+        <!-- 로그인 버튼 -->
+        <button type="submit" class="btn btn-primary mx-auto d-block mt-3">로그인</button>
+
+        <!-- 회원가입 링크 -->
+        <div class="text-center mt-3">
+          <a href="/signup" class="text-muted">회원가입</a>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
 
