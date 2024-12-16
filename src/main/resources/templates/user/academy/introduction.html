@@ -1,31 +1,36 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/layout/layout::layout( ~{::title}, ~{::link}, ~{::body}, ~{::script}, ~{::meta})}">
-
 <title>학원 소개</title>
-<link rel="stylesheet" th:href="@{/assets/css/user/academy.css}">
 <body>
-<div class="container">
-  <!-- 사이드바 -->
-  <aside class="sidebar">
-      <ul>
-        <li><a th:href="@{/academy/introduction}" class="active">학원 소개</a></li>
-        <li><a th:href="@{/academy/teachers}">선생님 소개</a></li>
+<div class="container-fluid">
+  <div class="row">
+    <!-- 사이드바 -->
+    <aside class="col-md-3 col-lg-2 bg-light p-4">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a th:href="@{/academy/introduction}" class="nav-link active">학원 소개</a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/academy/teachers}" class="nav-link">선생님 소개</a>
+        </li>
       </ul>
-  </aside>
+    </aside>
 
-  <!-- 메인 컨텐츠 -->
-  <main class="content">
-    <section>
-      <h1>학원 소개</h1>
-      <img th:src="@{/assets/img/itself_inside.webp}"  alt="MATH ITSELF 학원 내부 모습">
-      <p>MATH ITSELF 수학학원은 단순한 개념 전달을 넘어, 학생들의 생각 체계를 교육하는 것을 목표로 합니다.</p>
-      <p>본질에 입각한 개념을 통해 모든 문제를 해결할 수 있는 능력을 키우는 데 중점을 둡니다.</p>
-      <p>- 대치동 서울대 수학 학원으로, 수학자들의 생각법과 체계를 가르칩니다.</p>
-      <p>- 학생들이 수학의 본질을 이해하고, 창의적 문제 해결 능력을 개발할 수 있도록 돕습니다.</p>
-      <p>- 학부모님께 신뢰를 드리기 위해 최선을 다하며, 부끄럽지 않은 교육을 지향합니다.</p>
-    </section>
-  </main>
+    <!-- 메인 컨텐츠 -->
+    <main class="col-md-9 col-lg-10 p-4">
+      <section>
+        <h1>학원 소개</h1>
+        <img th:src="@{/assets/img/itself_inside.webp}" alt="MATH ITSELF 학원 내부 모습" class="img-fluid rounded mb-4">
+        <p>MATH ITSELF 수학학원은 단순한 개념 전달을 넘어, 학생들의 생각 체계를 교육하는 것을 목표로 합니다.</p>
+        <p>본질에 입각한 개념을 통해 모든 문제를 해결할 수 있는 능력을 키우는 데 중점을 둡니다.</p>
+        <ul>
+          <li>대치동 서울대 수학 학원으로, 수학자들의 생각법과 체계를 가르칩니다.</li>
+          <li>학생들이 수학의 본질을 이해하고, 창의적 문제 해결 능력을 개발할 수 있도록 돕습니다.</li>
+          <li>학부모님께 신뢰를 드리기 위해 최선을 다하며, 부끄럽지 않은 교육을 지향합니다.</li>
+        </ul>
+      </section>
+    </main>
+  </div>
 </div>
-
 </body>
 </html>

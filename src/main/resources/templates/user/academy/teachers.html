@@ -2,37 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/layout/layout::layout( ~{::title}, ~{::link}, ~{::body}, ~{::script}, ~{::meta})}">
 
 <title>선생님 소개</title>
-<link rel="stylesheet" th:href="@{/assets/css/user/academy.css}">
 <body>
-<div class="container">
-  <!-- 사이드바 -->
-  <aside class="sidebar">
-      <ul>
-        <li><a th:href="@{/academy/introduction}" >학원 소개</a></li>
-        <li><a th:href="@{/academy/teachers}" class="active">선생님 소개</a></li>
+<div class="container-fluid">
+  <div class="row">
+    <!-- 사이드바 -->
+    <aside class="col-md-3 col-lg-2 bg-light p-4">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a th:href="@{/academy/introduction}" class="nav-link">학원 소개</a>
+        </li>
+        <li class="nav-item">
+          <a th:href="@{/academy/teachers}" class="nav-link active">선생님 소개</a>
+        </li>
       </ul>
-  </aside>
+    </aside>
 
-  <!-- 메인 컨텐츠 -->
-  <main class="content">
-    <section>
-      <h1>선생님 소개</h1>
-      <img th:src="@{/assets/img/wonjang_profile.jpg}"  alt="MATH ITSELF 학원 원장 모습">
-      <h1>선생님 소개</h1>
-      <p>대치동 math itself 수학학원 원장</p>
-      <p>수학, 교육, 지도, 뇌과학, 심리학, 정신분석학, 철학, 교육심리, 교육법, 수학책집필</p>
-      <br>
-      <p>부끄럽게도, 저는 지식을 파는 사람입니다.
-      <p>하지만, 이젠 부끄럽지 않습니다.</p>
-      <p>제가 쌓아올린 지식을 사달라고 말하는 것이 부끄럽지 않습니다.</p>
-      <br>
-      <p>부끄럽지 않은 교육을 하기 위해 최선을 다 할 것이며,</p>
-      <br>
-      <p>믿고 맡겨 주시는 학부모님께 최고의 결과를 약속드립니다.</p>
-      <br>
-      <p>저희와 함께 학습하며 목표를 이루어보세요!</p>
-    </section>
-  </main>
+    <!-- 메인 컨텐츠 -->
+    <main class="col-md-9 col-lg-10 p-4">
+      <section>
+        <h1>선생님 소개</h1>
+        <img th:src="@{/assets/img/wonjang_profile.jpg}" alt="MATH ITSELF 학원 원장 모습" class="img-fluid rounded mb-4">
+        <h3>대치동 MATH ITSELF 수학학원 원장</h3>
+        <p>수학, 교육, 지도, 뇌과학, 심리학, 정신분석학, 철학, 교육심리, 교육법, 수학책 집필</p>
+
+        <p>부끄럽게도, 저는 지식을 파는 사람입니다.</p>
+        <p>하지만, 이젠 부끄럽지 않습니다.</p>
+        <p>제가 쌓아올린 지식을 사달라고 말하는 것이 부끄럽지 않습니다.</p>
+
+        <p>부끄럽지 않은 교육을 하기 위해 최선을 다 할 것이며,</p>
+
+        <p>믿고 맡겨 주시는 학부모님께 최고의 결과를 약속드립니다.</p>
+
+        <p>저희와 함께 학습하며 목표를 이루어보세요!</p>
+      </section>
+    </main>
+  </div>
 </div>
 
 </body>
