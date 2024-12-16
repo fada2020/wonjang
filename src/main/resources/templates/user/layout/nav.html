@@ -1,25 +1,26 @@
 <th:block th:fragment="nav">
+
   <header class="bg-primary text-white py-3">
     <div class="container d-flex justify-content-between align-items-center">
       <!-- 텍스트 영역 -->
-      <div th:onclick="|window.location.href='/'|">
+      <div th:onclick="|window.location.href='/'|" class="me-3">
         <div>ITSELF</div>
         <div style="color:red; font-size: 12px;">그 본연의 것</div>
       </div>
 
       <!-- 전화버튼 -->
-      <a href="tel:010-2739-9679" class="text-white">
-        <img th:src="@{/storage/phone.svg}" alt="전화" style="width: 30px; height: 30px;"/>
+      <a href="tel:010-2739-9679" class="text-white me-3">
+        <i class="bi bi-telephone" style="font-size: 30px;"></i>
       </a>
 
-      <!-- 문자보내기 버튼 -->
-      <a href="sms:010-2739-9679" class="text-white">
-        <img th:src="@{/storage/message.svg}" alt="문자" style="width: 30px; height: 30px;"/>
+      <!-- 문자 보내기 버튼 -->
+      <a href="sms:010-2739-9679" class="text-white me-3">
+        <i class="bi bi-chat" style="font-size: 30px;"></i>
       </a>
 
       <!-- 내 정보 버튼 -->
-      <a th:href="@{/mypage}" class="text-white">
-        <img th:src="@{/storage/user.svg}" alt="내 정보" style="width: 30px; height: 30px;"/>
+      <a th:href="@{/mypage}" class="text-white me-3">
+        <i class="bi bi-person" style="font-size: 30px;"></i>
       </a>
 
       <!-- 햄버거 메뉴 -->
@@ -28,6 +29,7 @@
       </button>
     </div>
   </header>
+
 
   <!-- 네비게이션 바 -->
   <nav class="collapse navbar-collapse" id="navMenu">
