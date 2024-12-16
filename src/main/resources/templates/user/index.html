@@ -11,7 +11,7 @@
         <div class="col-12 mb-4">
             <div class="card">
                 <div class="card-image">
-                    <img src="http://localhost:8030/storage/background1.jpg" alt="Card Image" class="card-img-top">
+                    <img th:src="@{/storage/background1.jpg}" alt="Card Image" class="card-img-top">
                 </div>
                 <div class="card-body text-center">
                     <p>수학자를 꿈꾸었던 청년이</p>
@@ -31,7 +31,7 @@
         <div class="col-12 mb-4">
             <div class="card">
                 <div class="card-image">
-                    <img src="http://localhost:8030/storage/background2.jpg" alt="Card Image" class="card-img-top">
+                    <img th:src="@{/storage/background2.jpg}" alt="Card Image" class="card-img-top">
                 </div>
                 <div class="card-body text-center">
                     <h3>개념의 역사</h3>
@@ -46,7 +46,7 @@
         <div class="col-12 mb-4">
             <div class="card">
                 <div class="card-image">
-                    <img src="http://localhost:8030/storage/background3.jpg" alt="Card Image" class="card-img-top">
+                    <img th:src="@{/storage/background3.jpg}" alt="Card Image" class="card-img-top">
                 </div>
                 <div class="card-body text-center">
                     <h3>명확한 교육 목표</h3>
@@ -61,7 +61,7 @@
         <div class="col-12 mb-4">
             <div class="card">
                 <div class="card-image">
-                    <img src="http://localhost:8030/storage/background4.jpg" alt="Card Image" class="card-img-top">
+                    <img th:src="@{/storage/background4.jpg}" alt="Card Image" class="card-img-top">
                 </div>
                 <div class="card-body text-center">
                     <h3>4인 체제</h3>
@@ -94,31 +94,6 @@
       }
     }
   }
-</script>
-<script>
-  let currentSlide = 0;
-  const slides = document.querySelectorAll('.slide');
-  const slideCount = slides.length;
-
-  function showSlide(n) {
-    slides.forEach(slide => slide.style.display = 'none');
-    slides[n].style.display = 'block';
-  }
-
-  function nextSlide() {
-    currentSlide = (currentSlide + 1) % slideCount;
-    showSlide(currentSlide);
-  }
-
-  function prevSlide() {
-    currentSlide = (currentSlide - 1 + slideCount) % slideCount;
-    showSlide(currentSlide);
-  }
-
-  document.addEventListener('DOMContentLoaded', () => {
-    showSlide(currentSlide);
-    setInterval(nextSlide, 3000); // 3초마다 자동 슬라이드
-  });
 </script>
 
 </html>
