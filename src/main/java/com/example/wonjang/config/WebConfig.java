@@ -2,6 +2,7 @@ package com.example.wonjang.config;
 
 
 import com.example.wonjang.interceptor.AuthInterceptor;
+import com.example.wonjang.interceptor.VisitInterceptor;
 import com.example.wonjang.repository.MemberRepository;
 import com.example.wonjang.resolver.CurrentUserArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
@@ -33,11 +34,13 @@ public class WebConfig implements WebMvcConfigurer {
     private final CurrentUserArgumentResolver currentUserArgumentResolver;
     private final AuthInterceptor authInterceptor;
     private final MemberRepository memberRepository;
+    private final VisitInterceptor visitInterceptor;
 
-    public WebConfig(CurrentUserArgumentResolver currentUserArgumentResolver, AuthInterceptor authInterceptor, MemberRepository memberRepository) {
+    public WebConfig(CurrentUserArgumentResolver currentUserArgumentResolver, AuthInterceptor authInterceptor, MemberRepository memberRepository, VisitInterceptor visitInterceptor) {
         this.currentUserArgumentResolver = currentUserArgumentResolver;
         this.authInterceptor = authInterceptor;
         this.memberRepository = memberRepository;
+        this.visitInterceptor = visitInterceptor;
     }
 
     @Bean
@@ -67,6 +70,7 @@ public class WebConfig implements WebMvcConfigurer {
    @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(authInterceptor);
+        registry.addInterceptor(visitInterceptor);
     }
     @Override
     public void addCorsMappings(CorsRegistry registry) {

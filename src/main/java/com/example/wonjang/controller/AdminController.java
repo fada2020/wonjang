@@ -7,6 +7,7 @@ import com.example.wonjang.model.Announce;
 import com.example.wonjang.model.Member;
 import com.example.wonjang.service.AnnounceService;
 import com.example.wonjang.service.MemberService;
+import com.example.wonjang.service.UserVisitService;
 import com.example.wonjang.utils.FileUtil;
 import io.micrometer.common.util.StringUtils;
 import jakarta.validation.Valid;
@@ -23,7 +24,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.DayOfWeek;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Slf4j
@@ -32,11 +35,13 @@ import java.util.Optional;
 public class AdminController {
     private final MemberService memberService;
     private final AnnounceService announceService;
+    private final UserVisitService userVisitService;
     private final BCryptPasswordEncoder encoder;
     private final FileUtil fileUtil;
-    public AdminController(MemberService memberService, AnnounceService announceService, BCryptPasswordEncoder encoder, FileUtil fileUtil) {
+    public AdminController(MemberService memberService, AnnounceService announceService, UserVisitService userVisitService, BCryptPasswordEncoder encoder, FileUtil fileUtil) {
         this.memberService = memberService;
         this.announceService = announceService;
+        this.userVisitService = userVisitService;
         this.encoder = encoder;
         this.fileUtil = fileUtil;
     }
@@ -46,6 +51,8 @@ public class AdminController {
             Model model
             , @CurrentUser Member member
     ){
+        Map<DayOfWeek, Integer> thisWeekVisits = userVisitService.getThisWeekVisits();
+        model.addAttribute("thisWeekVisits",thisWeekVisits);
         return "admin/index";
     }
 

@@ -4,6 +4,15 @@
   'use strict'
 
   feather.replace({ 'aria-hidden': 'true' })
+  const visitsData = [
+    thisWeekVisits.SUNDAY || 0,
+    thisWeekVisits.MONDAY || 0,
+    thisWeekVisits.TUESDAY || 0,
+    thisWeekVisits.WEDNESDAY || 0,
+    thisWeekVisits.THURSDAY || 0,
+    thisWeekVisits.FRIDAY || 0,
+    thisWeekVisits.SATURDAY || 0
+  ];
 
   // Graphs
   const ctx = document.getElementById('myChart')
@@ -21,15 +30,8 @@
         'Saturday'
       ],
       datasets: [{
-        data: [
-          15339,
-          21345,
-          18483,
-          24003,
-          23489,
-          24092,
-          12034
-        ],
+        label: 'Number of connected users',
+        data: visitsData,
         lineTension: 0,
         backgroundColor: 'transparent',
         borderColor: '#007bff',
