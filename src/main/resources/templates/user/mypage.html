@@ -3,59 +3,73 @@
 
 <title>마이 페이지</title>
 <body>
-<div class="container">
-  <div class="profile-info">
-    <h2>내 정보</h2>
-    <div class="profile-card">
-      <img  th:unless="${ #strings.isEmpty(member.picture) }" th:src="${ member.picture }" alt="사용자 사진" class="profile-image" />
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">내 정보</h2>
+
+  <div class="card">
+    <div class="card-body">
+      <form method="post" th:object="${updateMemberDto}" enctype="multipart/form-data" onsubmit="return checkValues(this)">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+        <!-- 이메일 -->
+        <div class="form-group">
+          <label th:for="email">이메일</label>
+          <input type="email" class="form-control" th:id="email" th:name="email" th:value="${member.email}" readonly />
+        </div>
+
+        <!-- 이름 -->
+        <div class="form-group">
+          <label th:for="name">이름</label>
+          <input type="text" class="form-control" th:id="name" th:name="name" th:value="${member.name}" required />
+        </div>
+
+        <!-- 학력 -->
+        <div class="form-group">
+          <label th:for="degree">학력</label>
+          <select class="form-control" th:id="degree" th:name="degree" required>
+            <option value="">선택하세요</option>
+            <option value="elementary" th:selected="${member.degree == 'elementary'}">초등학교</option>
+            <option value="middle" th:selected="${member.degree == 'middle'}">중학교</option>
+            <option value="high" th:selected="${member.degree == 'high'}">고등학교</option>
+            <option value="university" th:selected="${member.degree == 'university'}">대학교</option>
+            <option value="other" th:selected="${member.degree == 'other'}">기타</option>
+          </select>
+        </div>
+
+        <!-- 학년 -->
+        <div class="form-group" id="gradeGroup">
+          <label th:for="grade">학년</label>
+          <select class="form-control" th:name="grade" th:id="grade" required>
+            <option th:each="year, index : ${yearsByDegree}" th:value="${year}" th:text="${year} + '학년'" th:selected="${ #strings.isEmpty(member.grade) ? false : year.toString() == member.grade.toString()}" />
+          </select>
+        </div>
+
+        <!-- 비밀번호 -->
+        <div class="form-group">
+          <label th:for="password">비밀번호</label>
+          <input type="password" class="form-control" th:field="*{password}" placeholder="비밀번호 변경 (선택)" />
+        </div>
+
+        <!-- 사진 -->
+        <div class="form-group">
+          <label th:for="pictureFile">사진 변경</label>
+          <input type="file" class="form-control-file" th:field="*{pictureFile}" />
+        </div>
+
+        <!-- 수정 버튼 -->
+        <div class="form-group text-center mt-4">
+          <button type="submit" class="btn btn-primary w-100">수정 완료</button>
+        </div>
+      </form>
     </div>
-
-    <form  method="post" th:object="${updateMemberDto}" enctype="multipart/form-data">
-      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-      <div class="input-group">
-        <label th:for="email">이메일</label>
-        <input type="email" th:id="email"th:name="email" th:value="${member.email}"  readonly />
-      </div>
-
-      <div class="input-group">
-        <label th:for="name">이름</label>
-        <input type="text" th:id="name"th:name="name" th:value="${member.name}"  required />
-      </div>
-      <div class="input-group">
-        <label th:for="degree">학력</label>
-        <select  th:id="degree" th:name="degree" required>
-          <option value="">선택하세요</option>
-          <option value="elementary" th:selected="${member.degree == 'elementary'}">초등학교</option>
-          <option value="middle" th:selected="${member.degree == 'middle'}">중학교</option>
-          <option value="high" th:selected="${member.degree == 'high'}">고등학교</option>
-          <option value="university" th:selected="${member.degree == 'university'}">대학교</option>
-          <option value="other" th:selected="${member.degree == 'other'}">기타</option>
-        </select>
-      </div>
-      <div class="input-group" id="gradeGroup">
-        <label th:for="grade">학년</label>
-        <select th:name="grade" th:id="grade" required>
-          <option th:each="year, index : ${yearsByDegree}"
-                  th:value="${year}"
-                  th:text="${year} + '학년'"
-                  th:selected="${ #strings.isEmpty(member.grade) ? false : year.toString() == member.grade.toString()}" />
-        </select>
-      </div>
-      <div class="input-group">
-        <label  th:for="password">비밀번호</label>
-        <input type="password"  th:field="*{password}" placeholder="비밀번호 변경 (선택)" />
-      </div>
-
-      <div class="input-group">
-        <label th:for="pictureFile">사진 변경</label>
-        <input type="file" th:field="*{pictureFile}"  />
-      </div>
-
-      <div class="input-group">
-        <button type="submit" class="submit-button">수정 완료</button>
-      </div>
-    </form>
   </div>
+
+  <!-- 로그아웃 버튼 -->
+  <th:block sec:authorize="isAuthenticated()">
+    <a th:href="@{/logout}" id="logoutButton">로그아웃</a>
+  </th:block>
+
 </div>
 </body>
 <script>
