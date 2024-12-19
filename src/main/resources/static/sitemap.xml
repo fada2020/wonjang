@@ -1,73 +1,87 @@
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-    <!--  created with Free Online Sitemap Generator www.xml-sitemaps.com  -->
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>1.00</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/login</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/academy/introduction</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/lecture/list</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/data</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/announce</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/inquiry</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/lecture/info/1</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/academy/teachers</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/use</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/terms</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/faq</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/crew</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.80</priority>
-    </url>
-    <url>
-        <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/signup</loc>
-        <lastmod>2024-11-26T05:20:35+00:00</lastmod>
-        <priority>0.64</priority>
-    </url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/login</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/academy/introduction</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/academy/curriculum</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/lecture/list</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/data</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/announce</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/academy/teachers</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/use</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/terms</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/faq</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/crew</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/signup</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/lecture/info/1</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://xn--bh3b89qjsa.xn--oi2b61z32a.xn--3e0b707e/service/announce?page=1</loc>
+  <lastmod>2024-12-19T23:36:52+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
 </urlset>
