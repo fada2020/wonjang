@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, link, content, script, meta)"
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="layout(title, link, style, content, script, meta)"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
@@ -25,6 +25,9 @@
     <th:block th:replace="${title}"> </th:block>
     <!-- google -> 자바스크립트 yml 변수 -> Thymeleaf 에서 스프링 환경변수 사용하기 -> java.ihoney.pe.kr/472 -->
     <th:block th:replace="~{user/layout/css :: css(~{::link})}"></th:block>
+    <th:block th:if="${style != null}">
+        <th:block th:replace="${style}" />
+    </th:block>
 </head>
 <body style="overflow-y: visible;">
 <th:block th:replace="~{user/layout/nav :: nav}"></th:block>

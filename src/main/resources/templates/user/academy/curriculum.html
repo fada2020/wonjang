@@ -1,83 +1,65 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/layout/layout::layout( ~{::title}, ~{::link}, ~{::body}, ~{::script}, ~{::meta})}">
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/layout/layout::layout( ~{::title}, ~{::link}, ~{::style}, ~{::body}, ~{::script}, ~{::meta})}">
 
 <title>커리큘럼</title>
-<body class="bg-light">
-
-<!-- 커리큘럼 페이지 -->
-<div class="container py-5">
-    <div class="row">
-
-        <!-- 커리큘럼 제목 -->
-        <div class="col-12 text-center mb-5">
-            <h1>커리큘럼</h1>
+<body>
+<div class="container-fluid">
+    <div class="curriculum-wrapper" id="curriculum-wrapper">
+        <div class="curriculum-page">
+            <h2>1단계: 기초 이해</h2>
+            <p>기본적인 개념과 이론을 배우고, 각종 도구 사용법을 익힙니다.</p>
         </div>
 
-        <!-- 커리큘럼 항목들 -->
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">고1, 2, 3-1 직전방학</h5>
-                    <p class="card-text">8년 동안 집필한 개념서</p>
-                </div>
-            </div>
+        <div class="curriculum-page">
+            <h2>2단계: 실습</h2>
+            <p>이론을 바탕으로 실제 예제와 함께 실습을 진행합니다.</p>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">질적으로 다른 개념서</h5>
-                    <p class="card-text">보통의 개념서와 질적으로 다른 스스로 리뷰할 수 있는 명쾌한 설명</p>
-                </div>
-            </div>
+        <div class="curriculum-page">
+            <h2>3단계: 프로젝트</h2>
+            <p>팀 프로젝트를 통해 실력을 쌓고, 문제를 해결하는 경험을 제공합니다.</p>
         </div>
 
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">이해하고 적용하기</h5>
-                    <p class="card-text">헛갈리게 만드는 문제로 완전한 이해, 이해한 내용을 적용시키는 능력을 훈련</p>
-                </div>
-            </div>
+        <div class="curriculum-page">
+            <h2>4단계: 심화 학습</h2>
+            <p>고급 개념과 도구들을 배우고, 전문 지식을 확장합니다.</p>
         </div>
-
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">문제 해결 능력 향상</h5>
-                    <p class="card-text">난이도별, 유형별로 자신의 두뇌를 제한시키지 않고 치밀한 문제 배치를 통해 어느새 고난도 문제를 풀고 있는 자신을 발견</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">핵심 기출, 모의고사</h5>
-                    <p class="card-text">사고체계에 따라 분류한 핵심 기출, 모의고사 그리고 반복 변형 문제</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">학기 돌입</h5>
-                    <p class="card-text">1일 수학(개념반복) + 방학 오답 변형</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body">
-                    <h5 class="card-title">시험 한달 전</h5>
-                    <p class="card-text">모의 시험 및 오답 유형 분류 개인별 시험전략수립</p>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
+
 </body>
+
+<!-- 부트스트랩 JS, Popper.js, jQuery -->
+<script th:src="@{/assets/bootstrap/js/popper.min.js}"></script>
+<script>
+    // 페이지 스크롤을 감지하고 슬라이드 효과 적용
+    let currPage = 0;
+    const pages = document.querySelectorAll('.curriculum-page');
+    const wrapper = document.getElementById('curriculum-wrapper');
+    let isScrolling = false; // 스크롤 상태 확인
+
+    window.addEventListener('wheel', (event) => {
+        if (isScrolling) return; // 이미 스크롤 중이면 무시
+
+        isScrolling = true; // 스크롤 시작
+
+        if (event.deltaY > 0) {  // 마우스를 내리면
+            if (currPage < pages.length - 1) {  // 마지막 페이지까지 스크롤 이동
+                currPage++;
+                wrapper.style.transform = `translateY(-${currPage * 100}vh)`;
+            }
+        } else {  // 마우스를 올리면
+            if (currPage > 0) {
+                currPage--;
+                wrapper.style.transform = `translateY(-${currPage * 100}vh)`;
+            }
+        }
+
+        // 스크롤이 끝난 후 1초 후에 다시 스크롤 이벤트를 활성화
+        setTimeout(() => {
+            isScrolling = false;
+        }, 1000); // 1000ms (1초) 후에 다시 스크롤을 받을 수 있게 함
+    });
+</script>
+
 </html>
