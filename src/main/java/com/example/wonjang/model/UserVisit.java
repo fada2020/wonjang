@@ -6,6 +6,7 @@ import lombok.Getter;
 
 import java.time.LocalDate;
 @Getter
+@Builder
 @Entity
 public class UserVisit {
     @Id
@@ -34,6 +35,6 @@ public class UserVisit {
     }
 
     public void plusConnect() {
-        this.connect = this.connect == null ? 1 : this.connect++;
+        this.connect = this.connect == null ? 1 : this.connect + 1;
     }
 }
