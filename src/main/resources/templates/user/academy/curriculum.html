@@ -2,64 +2,100 @@
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{user/layout/layout::layout( ~{::title}, ~{::link}, ~{::style}, ~{::body}, ~{::script}, ~{::meta})}">
 
 <title>커리큘럼</title>
+<style>
+    body {
+        overflow: hidden !important;
+    }
+    .curriculum-wrapper {
+        position: relative;
+        overflow: hidden;
+        height: 100vh;
+    }
+    .curriculum-page {
+        height: 100vh;
+        display: none;
+    }
+    .curriculum-page.active {
+        display: block;
+    }
+    .pagination-dots {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+    }
+    .pagination-dots .dot {
+        width: 10px;
+        height: 10px;
+        background-color: #ccc;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+    .pagination-dots .dot.active {
+        background-color: #000;
+    }
+</style>
+</head>
 <body>
 <div class="container-fluid">
-    <div class="curriculum-wrapper" id="curriculum-wrapper">
-        <div class="curriculum-page">
-            <h2>1단계: 기초 이해</h2>
-            <p>기본적인 개념과 이론을 배우고, 각종 도구 사용법을 익힙니다.</p>
-        </div>
+<div class="curriculum-wrapper" id="curriculum-wrapper">
+    <div class="curriculum-page active">
+        <h2>1단계: 기초 이해</h2>
+        <p>기본적인 개념과 이론을 배우고, 각종 도구 사용법을 익힙니다.</p>
+    </div>
 
-        <div class="curriculum-page">
-            <h2>2단계: 실습</h2>
-            <p>이론을 바탕으로 실제 예제와 함께 실습을 진행합니다.</p>
-        </div>
+    <div class="curriculum-page">
+        <h2>2단계: 실습</h2>
+        <p>이론을 바탕으로 실제 예제와 함께 실습을 진행합니다.</p>
+    </div>
 
-        <div class="curriculum-page">
-            <h2>3단계: 프로젝트</h2>
-            <p>팀 프로젝트를 통해 실력을 쌓고, 문제를 해결하는 경험을 제공합니다.</p>
-        </div>
+    <div class="curriculum-page">
+        <h2>3단계: 프로젝트</h2>
+        <p>팀 프로젝트를 통해 실력을 쌓고, 문제를 해결하는 경험을 제공합니다.</p>
+    </div>
 
-        <div class="curriculum-page">
-            <h2>4단계: 심화 학습</h2>
-            <p>고급 개념과 도구들을 배우고, 전문 지식을 확장합니다.</p>
-        </div>
+    <div class="curriculum-page">
+        <h2>4단계: 심화 학습</h2>
+        <p>고급 개념과 도구들을 배우고, 전문 지식을 확장합니다.</p>
     </div>
 </div>
-
-</body>
+<div class="pagination-dots" id="pagination-dots">
+    <div class="dot active"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+    <div class="dot"></div>
+</div>
+</div>
 
 <!-- 부트스트랩 JS, Popper.js, jQuery -->
 <script th:src="@{/assets/bootstrap/js/popper.min.js}"></script>
+
 <script>
-    // 페이지 스크롤을 감지하고 슬라이드 효과 적용
-    let currPage = 0;
-    const pages = document.querySelectorAll('.curriculum-page');
-    const wrapper = document.getElementById('curriculum-wrapper');
-    let isScrolling = false; // 스크롤 상태 확인
+    $(document).ready(function() {
+        let currentIndex = 0;
+        const pages = $('.curriculum-page');
+        const dots = $('.dot');
 
-    window.addEventListener('wheel', (event) => {
-        if (isScrolling) return; // 이미 스크롤 중이면 무시
-
-        isScrolling = true; // 스크롤 시작
-
-        if (event.deltaY > 0) {  // 마우스를 내리면
-            if (currPage < pages.length - 1) {  // 마지막 페이지까지 스크롤 이동
-                currPage++;
-                wrapper.style.transform = `translateY(-${currPage * 100}vh)`;
-            }
-        } else {  // 마우스를 올리면
-            if (currPage > 0) {
-                currPage--;
-                wrapper.style.transform = `translateY(-${currPage * 100}vh)`;
-            }
+        function showPage(index) {
+            pages.removeClass('active').eq(index).addClass('active');
+            dots.removeClass('active').eq(index).addClass('active');
         }
 
-        // 스크롤이 끝난 후 1초 후에 다시 스크롤 이벤트를 활성화
-        setTimeout(() => {
-            isScrolling = false;
-        }, 1000); // 1000ms (1초) 후에 다시 스크롤을 받을 수 있게 함
+        $(window).on('wheel', function(event) {
+            if (event.originalEvent.deltaY > 0) {
+                currentIndex = (currentIndex + 1) % pages.length;
+            } else {
+                currentIndex = (currentIndex - 1 + pages.length) % pages.length;
+            }
+            showPage(currentIndex);
+        });
+
+        dots.on('click', function() {
+            currentIndex = $(this).index();
+            showPage(currentIndex);
+        });
     });
 </script>
-
 </html>
