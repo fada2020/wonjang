@@ -30,7 +30,6 @@ public class AuthInterceptor implements HandlerInterceptor {
         Authentication authentication = (Authentication) request.getUserPrincipal();
         Object principal = loginUtil.getPrincipal(authentication);
         if(hasAnnotation && principal == null){
-            System.out.println(" =/asdfsadfsadfsadfsafdasdfsadf " );
             response.sendRedirect("/login");
             return false;
         } else {
