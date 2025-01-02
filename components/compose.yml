@@ -71,6 +71,8 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
       - ./data:/prometheus
+      - ./console_libraries:/etc/prometheus/console_libraries
+      - ./consoles:/etc/prometheus/consoles
     ports:
       - "9090:9090"
     command:
