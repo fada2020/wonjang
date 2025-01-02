@@ -65,30 +65,30 @@ services:
     ports:
       - "3306:3306"
 
-  prometheus:
-    image: prom/prometheus:v2.37.6
-    container_name: prometheus
-    volumes:
-      - ./prometheus.yml:/prometheus/prometheus.yml
-      - ./prometheus:/prometheus
-    ports:
-      - "9090:9090"
-    command:
-      - '--web.enable-lifecycle'
-      - '--config.file=/prometheus/prometheus.yml'
-      - '--web.console.libraries=/prometheus/console_libraries'
-      - '--web.console.templates=/prometheus/consoles'
-    restart: always
-    depends_on:
-      - was
-
-  grafana:
-    image: grafana/grafana:9.4.7
-    container_name: grafana
-    ports:
-      - "3000:3000"
-    volumes:
-      - ./grafana/volume:/var/lib/grafana
-    restart: always
-    depends_on:
-      - was
+#  prometheus:
+#    image: prom/prometheus:v2.37.6
+#    container_name: prometheus
+#    volumes:
+#      - ./prometheus.yml:/prometheus/prometheus.yml
+#      - ./prometheus:/prometheus
+#    ports:
+#      - "9090:9090"
+#    command:
+#      - '--web.enable-lifecycle'
+#      - '--config.file=/prometheus/prometheus.yml'
+#      - '--web.console.libraries=/prometheus/console_libraries'
+#      - '--web.console.templates=/prometheus/consoles'
+#    restart: always
+#    depends_on:
+#      - was
+#
+#  grafana:
+#    image: grafana/grafana:9.4.7
+#    container_name: grafana
+#    ports:
+#      - "3000:3000"
+#    volumes:
+#      - ./grafana/volume:/var/lib/grafana
+#    restart: always
+#    depends_on:
+#      - was
