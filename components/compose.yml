@@ -70,7 +70,7 @@ services:
     container_name: prometheus
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./data:/prometheus
+      - ./data:/prometheus/data
       - ./console_libraries:/etc/prometheus/console_libraries
       - ./consoles:/etc/prometheus/consoles
     ports:
