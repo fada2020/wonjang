@@ -51,7 +51,7 @@ public class AdminController {
             Model model
             , @CurrentUser Member member
     ){
-        Map<DayOfWeek, Integer> thisWeekVisits = userVisitService.getThisWeekVisits();
+        Map<DayOfWeek, Long> thisWeekVisits = userVisitService.getThisWeekVisits();
         model.addAttribute("thisWeekVisits",thisWeekVisits);
         return "admin/index";
     }
