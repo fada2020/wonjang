@@ -39,17 +39,16 @@ public class UserVisitService {
         Map<DayOfWeek, Integer> visitCounts = new HashMap<>();
 
         // 월요일부터 일요일까지 날짜별로 접속자 수 집계
-        for (DayOfWeek dayOfWeek : DayOfWeek.values()) {
-            /*
-            * with() 메서드는 LocalDate 객체를 특정 TemporalField(이 경우 DayOfWeek)를 기준으로 변경하는 메서드
-            * 이 메서드는 monday 날짜를 기준으로, 원하는 요일에 해당하는 날짜를 반환
-            * */
-            LocalDate date = monday.with(DayOfWeek.of(dayOfWeek.getValue()));
+        for (int i = 0; i < 7; i++) {
+            // 월요일부터 시작하여 7일 동안 반복
+            LocalDate date = monday.plusDays(i);  // 월요일을 기준으로 +1, +2, ..., +6 일 계산
+            DayOfWeek dayOfWeek = date.getDayOfWeek();  // 해당 날짜의 요일을 가져옴
             int visitCount = (int) visits.stream()
                     .filter(visit -> visit.getLocalDate().equals(date))
                     .count();
             visitCounts.put(dayOfWeek, visitCount);
         }
+
         return visitCounts;
     }
 }
