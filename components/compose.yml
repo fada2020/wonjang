@@ -9,6 +9,7 @@ services:
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     depends_on:
       - web
+
   web:
     image: nginx
     ports:
@@ -24,9 +25,10 @@ services:
       - ./certbot/www:/var/www/certbot:rw
     depends_on:
       - was
+
   was:
     image: fada2020/wonjang-app-image
-    container_name: wonjang_was
+    container_name: was
     restart: always
     environment:
       - SPRING_PROFILES_ACTIVE=prod
@@ -45,6 +47,7 @@ services:
       - /home/wonjang/logs/app-prod:/logs/app-prod
     depends_on:
       - db
+
   db:
     image: mariadb
     container_name: wonjang_db
@@ -61,3 +64,31 @@ services:
       - ./db/initdb.d:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
+
+  prometheus:
+    image: prom/prometheus:v2.37.6
+    container_name: prometheus
+    volumes:
+      - ./prometheus/config:/etc/prometheus
+      - ./prometheus/volume:/prometheus
+    ports:
+      - "9090:9090"
+    command:
+      - '--web.enable-lifecycle'
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+    restart: always
+    depends_on:
+      - was
+
+  grafana:
+    image: grafana/grafana:9.4.7
+    container_name: grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/volume:/var/lib/grafana
+    restart: always
+    depends_on:
+      - was

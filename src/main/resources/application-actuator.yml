@@ -1,8 +1,11 @@
 management:
-  endpoints:
-    web:
-      exposure:
-        include: "health,info,metrics,env"
+ endpoints:
+   web:
+     exposure:
+       include: prometheus, health, info
+ metrics:
+   tags:
+     application: ${spring.application.named}
 # Health: /actuator/health - 애플리케이션의 건강 상태를 확인할 수 있습니다.
 # Info: /actuator/info - 애플리케이션의 기본 정보를 확인할 수 있습니다.
 # Metrics: /actuator/metrics - 애플리케이션의 여러 가지 지표를 확인할 수 있습니다.

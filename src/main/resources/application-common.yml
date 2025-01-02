@@ -45,11 +45,3 @@ jwt:
   refresh:
     time: 3600000
     key: ur5Rtszy7fS2LtsjjU9mKq8xK1wae+dhd/HabijEtyo= #aoto-gotanda-kameari-chitosefunabashi-hatanodai-takatsu-chancheon-hwainbil-hubsu
-management:
-  endpoints:
-    web:
-      exposure:
-        include: prometheus, health, info
-  metrics:
-    tags:
-      application: ${spring.application.named}
