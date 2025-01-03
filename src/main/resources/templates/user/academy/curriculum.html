@@ -8,15 +8,22 @@
     }
     .curriculum-wrapper {
         position: relative;
-        overflow: hidden;
         height: 100vh;
     }
     .curriculum-page {
-        height: 100vh;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
     .curriculum-page.active {
-        display: block;
+        display: flex;
     }
     .pagination-dots {
         position: absolute;
@@ -40,38 +47,57 @@
 </head>
 <body>
 <div class="container-fluid">
-<div class="curriculum-wrapper" id="curriculum-wrapper">
-    <div class="curriculum-page active">
-        <h2>1단계: 기초 이해</h2>
-        <p>기본적인 개념과 이론을 배우고, 각종 도구 사용법을 익힙니다.</p>
-    </div>
+    <div class="curriculum-wrapper" id="curriculum-wrapper">
+        <div class="curriculum-page active">
+            <h2>8년 동안 집필한 개념서</h2>
+            <p>보통의 개념서와 질적으로 다른</p>
+            <p>스스로 리뷰할 수 있는 명쾌한 설명</p>
+            <img th:src="@{/assets/img/crew.jpeg}" alt="" class="img-fluid">
+        </div>
 
-    <div class="curriculum-page">
-        <h2>2단계: 실습</h2>
-        <p>이론을 바탕으로 실제 예제와 함께 실습을 진행합니다.</p>
-    </div>
+        <div class="curriculum-page">
+            <h2>헛갈리게 만드는 문제로 완전한 이해</h2>
+            <img th:src="@{/assets/img/crew.jpeg}" alt="" class="img-fluid">
+        </div>
 
-    <div class="curriculum-page">
-        <h2>3단계: 프로젝트</h2>
-        <p>팀 프로젝트를 통해 실력을 쌓고, 문제를 해결하는 경험을 제공합니다.</p>
-    </div>
+        <div class="curriculum-page">
+            <h2>이해한 내용을 적용시키는 능력을 훈련</h2>
+            <p>난이도별, 유형별로 자신의 두뇌를 제한시키지 않고</p>
+            <p>치밀한 문제 배치를 통해 어느새 고난도 문제를</p>
+            <p>풀고 있는 자신을 발견</p>
+            <img th:src="@{/assets/img/crew.jpeg}" alt="" class="img-fluid">
+        </div>
 
-    <div class="curriculum-page">
-        <h2>4단계: 심화 학습</h2>
-        <p>고급 개념과 도구들을 배우고, 전문 지식을 확장합니다.</p>
+        <div class="curriculum-page">
+            <h2>사고 체계에 따라 분류한 핵심 기출</h2>
+            <p>모의고사 그리고 반복 변형 문제</p>
+            <img th:src="@{/assets/img/crew.jpeg}" alt="" class="img-fluid">
+        </div>
+
+        <div class="curriculum-page">
+            <h2>학기 돌입</h2>
+            <p>1일 수학 (개념반복) + 방학 오답 변형</p>
+            <img th:src="@{/assets/img/crew.jpeg}" alt="" class="img-fluid">
+        </div>
+
+        <div class="curriculum-page">
+            <h2>시험 한 달 전</h2>
+            <p>모의 시험 및 오답 유형 분류, 개인별 시험전략 수립</p>
+            <img th:src="@{/assets/img/crew.jpeg}" alt="" class="img-fluid">
+        </div>
+    </div>
+    <div class="pagination-dots" id="pagination-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
     </div>
 </div>
-<div class="pagination-dots" id="pagination-dots">
-    <div class="dot active"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-    <div class="dot"></div>
-</div>
-</div>
-
+</body>
 <!-- 부트스트랩 JS, Popper.js, jQuery -->
 <script th:src="@{/assets/bootstrap/js/popper.min.js}"></script>
-
 <script>
     $(document).ready(function() {
         let currentIndex = 0;
