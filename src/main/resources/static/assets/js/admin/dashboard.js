@@ -7,11 +7,16 @@
   // 데이터 준비
   const visitsData = [];
   const labels = [];
-
-  thisWeekVisits.forEach(visit => {
+  const sortedVisits = thisWeekVisits.sort((a, b) => {
+    const dateA = new Date(a.localDate);
+    const dateB = new Date(b.localDate);
+    return dateA - dateB; // 오름차순 정렬
+  });
+  sortedVisits.forEach(visit => {
     labels.push(visit.localDate); // 날짜를 라벨에 추가
     visitsData.push(visit.connect); // 접속자 수를 데이터에 추가
   });
+
 
   // Graphs
   const ctx = document.getElementById('myChart')
