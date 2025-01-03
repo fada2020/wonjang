@@ -29,15 +29,7 @@ public class UserVisitService {
     public void save(UserVisit userVisit) {
         userVisitRepository.save(userVisit);
     }
-    public Map<DayOfWeek, Integer> getThisWeekVisits() {
-        LocalDate today = LocalDate.now();
-        LocalDate monday = today.with(DayOfWeek.MONDAY);
-        LocalDate sunday = today.with(DayOfWeek.SUNDAY);
-        List<UserVisit> byLocalDateBetween = userVisitRepository.findByLocalDateBetween(monday, sunday);
-        Map<DayOfWeek, Integer>hashMap = new HashMap<>();
-        byLocalDateBetween.forEach(userVisit -> {
-            hashMap.put(userVisit.getLocalDate().getDayOfWeek(), userVisit.getConnect());
-        });
-        return hashMap;
+    public List<UserVisit> getThisWeekVisits() {
+        return userVisitRepository.findTop7ByOrderByLocalDateDesc();
     }
 }

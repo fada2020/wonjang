@@ -3,16 +3,15 @@
 (() => {
   'use strict'
 
-  feather.replace({ 'aria-hidden': 'true' })
-  const visitsData = [
-    thisWeekVisits.SUNDAY || 0,
-    thisWeekVisits.MONDAY || 0,
-    thisWeekVisits.TUESDAY || 0,
-    thisWeekVisits.WEDNESDAY || 0,
-    thisWeekVisits.THURSDAY || 0,
-    thisWeekVisits.FRIDAY || 0,
-    thisWeekVisits.SATURDAY || 0
-  ];
+  feather.replace({ 'aria-hidden': 'true' });
+  // 데이터 준비
+  const visitsData = [];
+  const labels = [];
+
+  thisWeekVisits.forEach(visit => {
+    labels.push(visit.localDate); // 날짜를 라벨에 추가
+    visitsData.push(visit.connect); // 접속자 수를 데이터에 추가
+  });
 
   // Graphs
   const ctx = document.getElementById('myChart')
@@ -20,15 +19,7 @@
   const myChart = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday'
-      ],
+      labels: labels,
       datasets: [{
         label: 'Number of connected users',
         data: visitsData,

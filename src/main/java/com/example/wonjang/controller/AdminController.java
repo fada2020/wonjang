@@ -5,6 +5,7 @@ import com.example.wonjang.dto.AnnounceDto;
 import com.example.wonjang.dto.UpdateAdminDto;
 import com.example.wonjang.model.Announce;
 import com.example.wonjang.model.Member;
+import com.example.wonjang.model.UserVisit;
 import com.example.wonjang.service.AnnounceService;
 import com.example.wonjang.service.MemberService;
 import com.example.wonjang.service.UserVisitService;
@@ -51,7 +52,7 @@ public class AdminController {
             Model model
             , @CurrentUser Member member
     ){
-        Map<DayOfWeek, Integer> thisWeekVisits = userVisitService.getThisWeekVisits();
+        List<UserVisit> thisWeekVisits = userVisitService.getThisWeekVisits();
         model.addAttribute("thisWeekVisits",thisWeekVisits);
         return "admin/index";
     }

@@ -11,4 +11,5 @@ public interface UserVisitRepository extends JpaRepository<UserVisit, Integer> {
     Optional<UserVisit> findByLocalDate(LocalDate localDate);
 
     List<UserVisit> findByLocalDateBetween(LocalDate monday, LocalDate sunday);
+    List<UserVisit> findTop7ByOrderByLocalDateDesc();
 }
