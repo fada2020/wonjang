@@ -144,4 +144,14 @@ public class AdminController {
     ){
             return "admin/forgot";
     }
+
+    @GetMapping("/data/list")
+    public String dataIndex(
+            Model model
+            , @CurrentUser Member member
+            , @PageableDefault(size = 10) @SortDefault.SortDefaults(@SortDefault(sort="id", direction = Sort.Direction.DESC)) Pageable pageable){
+        Page<Announce> announcePage = announceService.findAll(pageable);  // 공지사항 목록을 가져오는 서비스 메소드
+        model.addAttribute("announcePage", announcePage);
+        return "admin/data/list";
+    }
 }
