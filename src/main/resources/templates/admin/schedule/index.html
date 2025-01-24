@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{admin/layout/layout::layout( ~{::title}, ~{::link}, ~{::body}, ~{::script})}">
+<title>공지사항</title>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h2>공지사항 목록</h2>
+        <a th:href="@{/admin/schedule/update}" class="btn btn-primary">시간표 작성</a>
+      </div>
+
+      <h1>학원 시간표</h1>
+      <div id="calendar">
+        <!-- 달력 표시 -->
+        <table>
+          <thead>
+          <tr>
+            <th>일</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            <th>토</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="week : ${calendar}">
+            <td th:each="day : ${week}" th:text="${day.date}"
+                th:data-date="${day.fullDate}"
+                class="day-cell">
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="schedule">
+        <!-- 선택된 날짜의 시간표 표시 -->
+        <h2 id="selectedDate">날짜를 선택하세요</h2>
+        <ul id="scheduleList"></ul>
+      </div>
+
+      <table>
+        <thead>
+        <tr>
+          <th>날짜</th>
+          <th>시간</th>
+          <th>수업명</th>
+          <th>강사</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+
+    </main>
+  </div>
+</div>
+<script>
+  // 날짜 클릭 이벤트
+  $(document).on('click', '.day-cell', function() {
+    const selectedDate = $(this).data('date');
+    $('#selectedDate').text(selectedDate);
+
+    // AJAX로 시간표 가져오기
+    $.ajax({
+      url: '/schedule/' + selectedDate,
+      method: 'GET',
+      success: function(data) {
+        const scheduleList = $('#scheduleList');
+        scheduleList.empty(); // 기존 목록 초기화
+        data.forEach(function(schedule) {
+          scheduleList.append('<li>' + schedule.time + ' - ' + schedule.teamName + ': ' + schedule.activity + '</li>');
+        });
+      },
+      error: function() {
+        alert('시간표를 불러오는데 실패했습니다.');
+      }
+    });
+  });
+</script>
+</body>
+</html>
