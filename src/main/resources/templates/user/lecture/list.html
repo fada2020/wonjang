@@ -6,7 +6,7 @@
 <div>
     <div th:each="lectureCover : ${lectureCovers}" class="lecture-card" >
         <a th:href="@{/lecture/info/{id}(id=${lectureCover.id})}">
-            <img class="lecture-image" th:src="${lectureCover.imgUrl}" alt="Lecture Image"/>
+            <img class="lecture-image" th:src="${lectureCover.imgUrl}" style="width: 20%;" alt="Lecture Image"/>
             <h3 th:text="${lectureCover.title}">Lecture Title</h3>
             <p th:text="${lectureCover.description}">Lecture Description</p>
         </a>
